@@ -1,4 +1,4 @@
-var userListData = [];
+var patientListData = [];
 
 $(function() {
 	$(document).ready(function(){
@@ -66,10 +66,10 @@ function showUserInfo(event) {
     // Retrieve username from link rel attribute
     var thisUserName = $(this).attr('rel');
 	// Get Index of object based on id value
-    var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(thisUserName);
+    var arrayPosition = patientListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(thisUserName);
 
     // Get our User Object
-    var thisUserObject = userListData[arrayPosition];
+    var thisUserObject = patientListData[arrayPosition];
      alert($('#firstName').attr('value'));
     //Populate Info Box
     $('#firstName').val(thisUserObject.firstName);
@@ -135,7 +135,7 @@ function savePatient(event) {
         $.ajax({
             type: 'POST',
             data: newUser,
-            url: 'http://localhost:3000/users/adduser',
+            url: 'http://localhost:3000/patients/addpatient',
             dataType: 'JSON'
         }).done(function( response ) {
 

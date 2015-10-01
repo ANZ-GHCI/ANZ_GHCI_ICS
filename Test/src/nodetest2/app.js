@@ -9,10 +9,11 @@ var bodyParser = require('body-parser');
 // Database
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/nodetest2');
+var db = monk('localhost:27017/nodetes2');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var doctors = require('./routes/doctors');
+var patients = require('./routes/patients');
 
 var app = express();
 
@@ -42,7 +43,8 @@ app.use(function(req,res,next){
 });
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/doctors', doctors);
+app.use('/patients', patients);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
