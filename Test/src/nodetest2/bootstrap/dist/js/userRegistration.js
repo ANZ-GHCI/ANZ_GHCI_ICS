@@ -1,27 +1,25 @@
 var userListData = [];
 
 $(function() {
-	$(document).ready(function(){  alert('check2');
+	$(document).ready(function(){  
    	   // Save User button click
-	    $('#saveUser').on('click', saveUser); //Submit the form
-		
-		$('#reset').on('click', resetFields); //Submit the form
-		
-		$('#searchUsers').on('change', populateTable); //Submit the form
-		
-       $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);		
+	    $('#saveUser').on('click', saveUser); //Submit the form		
+		$('#reset').on('click', resetFields); //Reset the form		
+		$('#searchUsers').on('change', populateTable); //Populate the table data		
+        $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);		
 		
 
 	});
 });
 
 function resetFields(event) {
-event.preventDefault();
+
+    event.preventDefault();
 	$('#addUser fieldset input').val('');
+	$('#addUser fieldset textarea').val('');
 	$('#addUser fieldset input[type=radio]').attr('checked', false);
 	$('#addUser fieldset input[type=checkbox]').attr('checked', false);
-	
-}				
+	}				
 				
 $(function() {
 
@@ -33,7 +31,8 @@ $(function() {
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
 $(function() {
-    $(window).bind("load resize", function() {
+
+		$(window).bind("load resize", function() {
         topOffset = 50;
         width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
         if (width < 768) {
@@ -61,12 +60,12 @@ $(function() {
 
 });
 
-function populateTable() {  alert('searchUsers');
+function populateTable() {  
     // Empty content string
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( 'http://localhost:3000/users/userlist', function( data ) { alert('check3'+data)
+    $.getJSON( 'http://localhost:3000/users/userlist', function( data ) { 
 		
 		    // Stick our user data array into a userlist variable in the global object
     userListData = data;
@@ -105,7 +104,7 @@ function showUserInfo(event) {
 
     // Get our User Object
     var thisUserObject = userListData[arrayPosition];
-     alert($('#firstName').attr('value'));
+     
     //Populate Info Box
 	//$('#usrtype : :selected').val(thisUserObject.usrtype);
     $('#firstName').val(thisUserObject.firstName);
@@ -127,7 +126,7 @@ function saveUser(event) {
     $('#addUser input').each(function(index, val) {
         if($(this).val() === '') { errorCount++; }
     });
-	alert('passed check1');
+	
     // Check and make sure errorCount's still at zero
     if(errorCount === 0) {
 
@@ -138,13 +137,12 @@ function saveUser(event) {
             'lastName': $('#addUser fieldset input#lastName').val(),
             'dob': $('#addUser fieldset input#dob').val(),
             'gender': $('#addUser fieldset input[name=gender]:checked').val(),
-			'address': $('#addUser fieldset input#address').val(),
+			'address': $('#addUser fieldset textarea#address').val(),
 			'MobilePhone': $('#addUser fieldset input#MobilePhone').val(),
 			'email': $('#addUser fieldset input#email').val(),
-		   'usrdet': $('#addUser fieldset input#usrdet').val(),
+		   'usrdet': $('#addUser fieldset textarea#usrdet').val(),
          }
-		alert('userType'+newUser.userType);
-        // Use AJAX to post the object to our adduser service
+		// Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
             data: newUser,
@@ -217,6 +215,3 @@ function deleteUser(event) {
     }
 
 };
-
-
-

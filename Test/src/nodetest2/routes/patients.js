@@ -12,6 +12,9 @@ router.get('/patientlist', function(req, res) {
     });
 });
 
+/*
+* search patient
+*/
 router.get('/searchPatient', function(req, res) {
     var db = req.db;
     var collection = db.get('patientlist');
@@ -48,7 +51,7 @@ router.delete('/deletepatient/:id', function(req, res) {
 
 
 /*
- * 
+ * Update patient information
  */
 router.put('/updatepatient/:id', function(req, res) {
     var db = req.db;
@@ -65,5 +68,31 @@ router.put('/updatepatient/:id', function(req, res) {
     
 
 });
+
+/*
+ * GET clinicalExamlist.
+ */
+router.get('/clinicalExamList', function(req, res) {
+    var db = req.db;
+    var collection = db.get('clinicalExamList');
+    collection.find({},{},function(e,docs){
+        res.json(docs);
+    });
+});
+
+
+/*
+ * POST to addClinicalExam.
+ */
+router.post('/addClinicalExam', function(req, res) {
+    var db = req.db;
+    var collection = db.get('clinicalExamList');
+    collection.insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+    });
+});
+
 
 module.exports = router;

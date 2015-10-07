@@ -2,33 +2,21 @@ var patientListData = [];
 
 $(function() {
 	$(document).ready(function(){
-	
-	
-   	   // Save patient button click
-	   /* if($('#patient_id').val() ==''){
-			$('#savePatient').on('click', savePatient); //Add the patient
-		} else{
-			$('#savePatient').on('click', updatePatient); //update the patient		
-		}*/
-		$('#savePatient').on('click', savePatient); //Add the patient
-		$('#updatePatient').on('click', updatePatient);
-		
-		
-		$('#reset').on('click', resetFields); //Reset the form
-		
-		$('#searchPatient').on('click', findPatient); //searchPatient
 
-		
+		$('#savePatient').on('click', savePatient); //Add the patient
+		$('#updatePatient').on('click', updatePatient);//Update patient
+		$('#reset').on('click', resetFields); //Reset the form
+		$('#searchPatient').on('click', findPatient); //searchPatient		
 
 	});
 });
 
 function resetFields(event) {
+
 event.preventDefault();
 	$('#addPatient fieldset input').val('');
 	$('#addPatient fieldset input[type=radio]').attr('checked', false);
 	$('#addPatient fieldset input[type=checkbox]').attr('checked', false);
-	
 }				
 				
 $(function() {
@@ -75,8 +63,7 @@ function findPatient(event) {
    event.preventDefault();
    //window.location="patient-registration.html";
    var patient = {'firstName' : $('#patientid').val()};
-	alert('patient : '+patient);
-    alert('patient : '+patient.firstName);
+
         $.ajax({
         type: "GET",
         url: "http://localhost:3000/patients/searchPatient/",
@@ -197,8 +184,8 @@ function savePatient(event) {
     }
     else {
 		//If errorCount is more than 0, error out
-        alert('Please fill in all fields');
-        return false;
+        //alert('Please fill in all fields');
+        //return false;
     }
 };
 
