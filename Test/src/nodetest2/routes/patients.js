@@ -19,7 +19,7 @@ router.get('/searchPatient', function(req, res) {
     var db = req.db;
     var collection = db.get('patientlist');
 	var userToFetch = req.body.firstName;
-    collection.find({"firstName" : userToFetch },function(err,data){
+    collection.find({},function(err,data){
         res.json(data);
     });
 });

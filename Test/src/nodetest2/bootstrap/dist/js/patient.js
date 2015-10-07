@@ -2,21 +2,24 @@ var patientListData = [];
 
 $(function() {
 	$(document).ready(function(){
-
-		$('#savePatient').on('click', savePatient); //Add the patient
-		$('#updatePatient').on('click', updatePatient);//Update patient
+		$('#savePatient').on('click', function(event){
+		
+			if($('#patient_id').val()!=''){	alert('update');
+				updatePatient(event);//Update patient
+			}else{alert('save');
+				savePatient(event); //Add the patient
+			}	
+		});
 		$('#reset').on('click', resetFields); //Reset the form
-		$('#searchPatient').on('click', findPatient); //searchPatient		
+		$('#searchPatient').on('click', findPatient); //searchPatient
 
 	});
 });
 
 function resetFields(event) {
 
-event.preventDefault();
-	$('#addPatient fieldset input').val('');
-	$('#addPatient fieldset input[type=radio]').attr('checked', false);
-	$('#addPatient fieldset input[type=checkbox]').attr('checked', false);
+	event.preventDefault();
+	window.location="patient-registration.html";
 }				
 				
 $(function() {
@@ -58,7 +61,7 @@ $(function() {
 });
 
 function findPatient(event) {
-
+	alert($('#patientid').val());
     // Prevent Link from Firing
    event.preventDefault();
    //window.location="patient-registration.html";
@@ -115,18 +118,10 @@ function findPatient(event) {
 function savePatient(event) {
     
 	// Super basic validation - increase errorCount variable if any fields are blank
-    var errorCount = 0;
 	//$("#patientRegistrationForm").validate();
-
-    $('#addPatient input').each(function(index, val) {
-        if($(this).val() === '') { errorCount++; }
-    });
-	
 	event.preventDefault();
 	// Check and make sure errorCount's still at zero
-    if(errorCount === 0) {
-
-        // If it is, compile all user info into one object
+            // If it is, compile all user info into one object
         var newUser = {
 			'firstName': $('#addPatient fieldset input#firstName').val(),
             'lastName': $('#addPatient fieldset input#lastName').val(),
@@ -181,12 +176,7 @@ function savePatient(event) {
 
             }
         });
-    }
-    else {
-		//If errorCount is more than 0, error out
-        //alert('Please fill in all fields');
-        //return false;
-    }
+    
 };
 
 
@@ -236,11 +226,7 @@ function updatePatient(event) {
 			alert('response:'+response);
             // Check for a successful (blank) response
             if (response.msg === '') {
-				$('#addPatient fieldset input').val('');
-				$('#addPatient fieldset textarea').val('');
-				$('#addPatient fieldset input[type=radio]').attr('checked', false);
-				$('#addPatient fieldset input[type=checkbox]').attr('checked', false);
-            }
+				window.location="patient-registration.html";            }
             else {
                 alert('Error: ' + response.msg);
             }
