@@ -12,6 +12,14 @@ router.get('/patientlist', function(req, res) {
     });
 });
 
+router.get('/searchPatient', function(req, res) {
+    var db = req.db;
+    var collection = db.get('patientlist');
+	var userToFetch = req.body.firstName;
+    collection.find({"firstName" : userToFetch },function(err,data){
+        res.json(data);
+    });
+});
 
 /*
  * POST to adduser.
@@ -44,20 +52,17 @@ router.delete('/deletepatient/:id', function(req, res) {
  */
 router.put('/updatepatient/:id', function(req, res) {
     var db = req.db;
-	var user = req.body;
+	var patient = req.body;
     var collection = db.get('patientlist');
     var userToUpdate = req.params.id;
-	    db.collection('users', function(err, collection) {
-        collection.update({'_id':userToUpdate}, user, {safe:true}, function(err, result) {
-            if (err) {
-                console.log('Error updating wine: ' + err);
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('' + result + ' document(s) updated');
-                res.send(user);
-            }
-        });
-    });
+
+	collection.update({'_id':userToUpdate}, {"$set":patient}, {safe:true}, function(err, result) {
+	console.log(err);
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+	});
+    
 
 });
 
