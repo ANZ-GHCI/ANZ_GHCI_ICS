@@ -4,9 +4,9 @@ $(function() {
 	$(document).ready(function(){
 		$('#savePatient').on('click', function(event){
 		
-			if($('#patient_id').val()!=''){	alert('update');
+			if($('#patient_id').val()!=''){	
 				updatePatient(event);//Update patient
-			}else{alert('save');
+			}else{
 				savePatient(event); //Add the patient
 			}	
 		});
@@ -61,8 +61,7 @@ $(function() {
 });
 
 function findPatient(event) {
-	alert($('#patientid').val());
-    // Prevent Link from Firing
+	// Prevent Link from Firing
    event.preventDefault();
    //window.location="patient-registration.html";
    var patient = {'firstName' : $('#patientid').val()};
@@ -74,11 +73,7 @@ function findPatient(event) {
 		data: patient,
 		success: function(data) { 
 			patientListData = data;
-			alert('data'+data);
 			var thisUserObject = patientListData[0];
-			//Populate data
-			 
-			//Populate Info Box
 			
 			$('#patient_id').val(thisUserObject._id);
 			$('#firstName').val(thisUserObject.firstName);
@@ -122,53 +117,17 @@ function savePatient(event) {
 	event.preventDefault();
 	// Check and make sure errorCount's still at zero
             // If it is, compile all user info into one object
-        var newUser = {
-			'firstName': $('#addPatient fieldset input#firstName').val(),
-            'lastName': $('#addPatient fieldset input#lastName').val(),
-            'email': $('#addPatient fieldset input#email').val(),
-            'dob': $('#addPatient fieldset input#dob').val(),
-            'gender': $('#addPatient fieldset input[name=gender]:checked').val(),
-			'address': $('#addPatient fieldset textarea#address').val(),
-            'homePhone': $('#addPatient fieldset input#homePhone').val(),
-            'MobilePhone': $('#addPatient fieldset input#MobilePhone').val(),
-            'income': $('#addPatient fieldset input#income').val(),
-            'occupation': $('#addPatient fieldset input#occupation').val(),
-            'education': $('#addPatient fieldset input#education').val(),
-            'religion': $('#addPatient fieldset input#religion').val(),
-            'maritalStatus': $('#addPatient fieldset input#maritalStatus').val(),
-            'noofChildren': $('#addPatient fieldset input#noofChildren').val(),
-			
-			'smoke': $('#addPatient fieldset input[name=smoke]:checked').val(),
-			'chewing': $('#addPatient fieldset input[name=chewing]:checked').val(),
-			'snuffing': $('#addPatient fieldset input[name=snuffing]:checked').val(),
-			'alcohol': $('#addPatient fieldset input[name=alcohol]:checked').val(),
-			'food': $('#addPatient fieldset input[name=food]:checked').val(),
-			
-			'diabetes': $('#addPatient fieldset input[id=diabetes]:checked').val(),
-			'bp': $('#addPatient fieldset input[id=bp]:checked').val(),			
-			'tb': $('#addPatient fieldset input[id=tb]:checked').val(),
-			'heart_disease': $('#addPatient fieldset input[id=heart_disease]:checked').val(),
-			'cancer': $('#addPatient fieldset input[id=cancer]:checked').val(),
-			'others': $('#addPatient fieldset input[id=others]:checked').val()
-        }
-		
+        var newPatient = preparePatientJson();
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
-            data: newUser,
+            data: newPatient,
             url: 'http://localhost:3000/patients/addpatient',
             dataType: 'JSON'
         }).done(function( response ) {
-			alert('response'+response);
-            // Check for successful (blank) response
+			// Check for successful (blank) response
             if (response.msg === '') {
-
-                // Clear the form inputs
-                $('#addPatient fieldset input').val('');
-				$('#addPatient fieldset textarea').val('');
-				$('#addPatient fieldset input[type=radio]').attr('checked', false);
-				$('#addPatient fieldset input[type=checkbox]').attr('checked', false);
-
+				window.location="patient-registration.html";
             }
             else {
                 // If something goes wrong, alert the error message that our service returned
@@ -179,15 +138,32 @@ function savePatient(event) {
     
 };
 
-
-
-
 // update patient
 function updatePatient(event) {  
     event.preventDefault();
     // Pop up a confirmation dialog
     
-	       var patientDetails = {
+    var patientDetails = preparePatientJson();	   
+		
+        $.ajax({
+            type: 'PUT',
+            url: 'http://localhost:3000/patients/updatepatient/' + $('#patient_id').val(),
+			data: patientDetails
+        }).done(function( response ) {
+			
+            // Check for a successful (blank) response
+            if (response.msg === '') {
+				window.location="patient-registration.html";            
+			}
+            else {
+                alert('Error: ' + response.msg);
+            }
+
+        });
+};
+		
+function preparePatientJson(){ 
+	var patient = {
 			'firstName': $('#addPatient fieldset input#firstName').val(),
             'lastName': $('#addPatient fieldset input#lastName').val(),
             'email': $('#addPatient fieldset input#email').val(),
@@ -215,21 +191,9 @@ function updatePatient(event) {
 			'heart_disease': $('#addPatient fieldset input[id=heart_disease]:checked').val(),
 			'cancer': $('#addPatient fieldset input[id=cancer]:checked').val(),
 			'others': $('#addPatient fieldset input[id=others]:checked').val()
-        }
-		alert('firstName : '+patientDetails.firstName+' : '+$('#patient_id').val());
-		alert('url'+'http://localhost:3000/patients/updatepatient/' + $('#patient_id').val());
-        $.ajax({
-            type: 'PUT',
-            url: 'http://localhost:3000/patients/updatepatient/' + $('#patient_id').val(),
-			data: patientDetails
-        }).done(function( response ) {
-			alert('response:'+response);
-            // Check for a successful (blank) response
-            if (response.msg === '') {
-				window.location="patient-registration.html";            }
-            else {
-                alert('Error: ' + response.msg);
-            }
+        };
+		
+		return patient;
 
-        });
-};
+	};		
+
