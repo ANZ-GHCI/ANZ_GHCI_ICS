@@ -60,6 +60,37 @@ $(function() {
 
 });
 
+function populateTable() {  
+    // Empty content string
+    var tableContent = '';
+
+    // jQuery AJAX call for JSON
+    $.getJSON( 'http://localhost:3000/patients/patientlist', function( data ) { 
+		
+		    // Stick our user data array into a userlist variable in the global object
+    patientListData = data;
+	
+        // For each item in our JSON, add a table row and cells to the content string
+        $.each(data, function(){
+            tableContent += '<tr>';
+            
+			tableContent += '<td>' + this.firstName + '</td>';
+			tableContent += '<td>' + this.lastName + '</td>';
+			tableContent += '<td>' + this.dob + '</td>';
+			tableContent += '<td>' + this.gender + '</td>';
+			tableContent += '<td>' + this.address + '</td>';
+			tableContent += '<td>' + this.MobilePhone + '</td>';
+            tableContent += '<td>' + this.email + '</td>';		
+            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">Info</a></td>';
+            tableContent += '</tr>';
+        });
+
+        // Inject the whole content string into our existing HTML table
+        $('#userList table tbody').html(tableContent);
+    });
+};
+
+
 function findPatient(event) {
 	// Prevent Link from Firing
    event.preventDefault();
@@ -67,13 +98,15 @@ function findPatient(event) {
    var patient = {'firstName' : $('#patientid').val()};
 
         $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:3000/patients/searchPatient/",
         dataType: "json",
 		data: patient,
 		success: function(data) { 
-			patientListData = data;
-			var thisUserObject = patientListData[0];
+		alert(data); 
+		  if(data != null){
+			
+			var thisUserObject = data;
 			
 			$('#patient_id').val(thisUserObject._id);
 			$('#firstName').val(thisUserObject.firstName);
@@ -104,10 +137,18 @@ function findPatient(event) {
 			$("[id=heart_disease]").val([thisUserObject.heart_disease]);
 			$("[id=cancer]").val([thisUserObject.cancer]);
 			$("[id=others]").val([thisUserObject.others]);
-		    }
-		});
+		    
+			
+		} else{
 		
-};
+			alert('error data not found');
+		}
+		
+		}
+		
+});
+
+}
 
 // Add User
 function savePatient(event) {
@@ -124,7 +165,8 @@ function savePatient(event) {
             data: newPatient,
             url: 'http://localhost:3000/patients/addpatient',
             dataType: 'JSON'
-        }).done(function( response ) {
+        }).done(function( response ) {  
+		  alert('response : '+response);
 			// Check for successful (blank) response
             if (response.msg === '') {
 				window.location="patient-registration.html";

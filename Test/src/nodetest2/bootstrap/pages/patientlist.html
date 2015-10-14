@@ -167,58 +167,27 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Registration #</th>
-                                            <th>Name</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX">
-                                            <td><a href="patientdetails.html">BLR 056 1220</a></td>
-                                            <td>Dina Mugee</td>
-                                            <td class="center">P</td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td><a href="patientdetails.html">BLR 061 1425</a></td>
-                                            <td>Viran Kegan</td>
-                                            <td class="center">D</td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td><a href="patientdetails.html">CHN 050 1120</a></td>
-                                            <td>Mughai Mani</td>
-                                            <td class="center">S</td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>CHN 004 1020</td>
-                                            <td>Angil Sullivan</td>
-                                            <td class="center">P</td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>MUB 050 1123</td>
-                                            <td>Dustin	Peters</td>
-                                            <td class="center">R</td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>MUB 011 1093</td>
-                                            <td>Irmak Wilgaun</td>
-                                            <td class="center">P</td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>DEL 050 1123</td>
-                                            <td>Krorva Seti</td>
-                                            <td class="center">D</td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>DEL 072 0923</td>
-                                            <td>Angel Cruz</td>
-                                            <td class="center">P</td>
-                                        </tr>
-                                       
-                                    </tbody>
-                                </table>
+                                <div id="userList">
+  <div class="dataTable_wrapper">
+  <table class="table table-striped table-bordered table-hover">
+   <!-- <table> -->
+      <thead>
+	    
+		<th>UserFirstName</th>
+        <th>UserLastName</th>
+		<th>DOB</th>
+		<th>Gender</th>
+		<th>Address</th>
+		<th>Mobile</th>		
+        <th>Email</th>
+		<th>Info</th>
+        <!--<th>Location</th> -->
+      </thead>
+      <tbody></tbody>
+    </table>
+	</div>
+  </div>
+
                             </div>
                             <!-- /.table-responsive -->
                         </div>
@@ -250,7 +219,10 @@
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/doctors.js"></script>
+	    <script src="../dist/js/patient.js"></script>
+
+		
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

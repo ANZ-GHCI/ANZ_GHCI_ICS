@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+
+
 /*
  * GET userlist.
  */
@@ -15,12 +17,12 @@ router.get('/patientlist', function(req, res) {
 /*
 * search patient
 */
-router.get('/searchPatient', function(req, res) {
+router.post('/searchPatient', function(req, res) {
     var db = req.db;
     var collection = db.get('patientlist');
 	var userToFetch = req.body.firstName;
-    collection.find({},function(err,data){
-        res.json(data);
+	collection.findOne({"firstName":userToFetch},function(err,data) {
+		res.json(data);		
     });
 });
 
@@ -29,12 +31,14 @@ router.get('/searchPatient', function(req, res) {
  */
 router.post('/addpatient', function(req, res) {
     var db = req.db;
-    var collection = db.get('patientlist');
-    collection.insert(req.body, function(err, result){
+	var collection = db.get('patientlist');
+	collection.insert(req.body, function(err, result){
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
         );
     });
+	
+
 });
 
 /*

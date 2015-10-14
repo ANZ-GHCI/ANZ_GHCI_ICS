@@ -7,6 +7,8 @@ $(function() {
    	   // Add User button click
 	    $('#btnAddPatient').on('click', addDoctor); //Submit the form
 		alert('doctors.js');
+		populateTable();
+		
 	});
 });	
 
@@ -51,7 +53,7 @@ $(function() {
 
 
 // Fill table with data
-function populateTable() {
+function populateTable111() {
 
     // Empty content string
     var tableContent = '';
