@@ -4,7 +4,7 @@ $(function() {
 	$(document).ready(function(){
 		$('#savePatient').on('click', function(event){
 		
-			if($('#patient_id').val()!=''){	
+			if($('#identifier').val()!=''){	
 				updatePatient(event);//Update patient
 			}else{
 				savePatient(event); //Add the patient
@@ -108,7 +108,7 @@ function findPatient(event) {
 			
 			var thisUserObject = data;
 			
-			$('#patient_id').val(thisUserObject._id);
+			$('#identifier').val(thisUserObject._id);
 			$('#firstName').val(thisUserObject.firstName);
 			$('#lastName').val(thisUserObject.lastName);
 			$('#email').val(thisUserObject.email);
@@ -152,13 +152,17 @@ function findPatient(event) {
 
 // Add User
 function savePatient(event) {
-    
+    alert('add');
 	// Super basic validation - increase errorCount variable if any fields are blank
 	//$("#patientRegistrationForm").validate();
 	event.preventDefault();
 	// Check and make sure errorCount's still at zero
             // If it is, compile all user info into one object
         var newPatient = preparePatientJson();
+		var datestring = newPatient.dob.substring(8, 10)+newPatient.dob.substring(5, 7)+newPatient.dob.substring(0, 4);
+		alert('patient id : '+newPatient.firstName.substring(0, 4)+datestring);
+		newPatient.patient_id = newPatient.firstName.substring(0, 4)+newPatient.lastName.substring(0,1)+datestring;
+		
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',

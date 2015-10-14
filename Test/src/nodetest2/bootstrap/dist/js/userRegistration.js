@@ -193,8 +193,7 @@ function deleteUser(event) {
         }).done(function( response ) {
 			alert('response'+response);
             // Check for a successful (blank) response
-			alert('searchUsers222');
-            if (response.msg === '') {
+			if (response.msg === '') {
             }
             else {
                 alert('Error: ' + response.msg);
