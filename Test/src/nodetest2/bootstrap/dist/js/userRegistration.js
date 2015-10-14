@@ -5,7 +5,7 @@ $(function() {
    	   // Save User button click
 	    $('#saveUser').on('click', saveUser); //Submit the form		
 		$('#reset').on('click', resetFields); //Reset the form		
-		$('#searchUsers').on('change', populateTable); //Populate the table data		
+		$('#searchUsers').on('change', findUser); //Populate the table data		
         $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);		
 		
 
@@ -138,9 +138,13 @@ function saveUser(event) {
             'dob': $('#addUser fieldset input#dob').val(),
             'gender': $('#addUser fieldset input[name=gender]:checked').val(),
 			'address': $('#addUser fieldset textarea#address').val(),
-			'MobilePhone': $('#addUser fieldset input#MobilePhone').val(),
+			'state': $('#addUser fieldset #country :selected').val(),
+			'district': $('#addUser fieldset #state :selected').val(),
+			'mobilePhone': $('#addUser fieldset input#MobilePhone').val(),
 			'email': $('#addUser fieldset input#email').val(),
-		   'usrdet': $('#addUser fieldset textarea#usrdet').val(),
+		    'usrdet': $('#addUser fieldset textarea#usrdet').val(),
+			'createdDate':new Date()
+		   
          }
 		// Use AJAX to post the object to our adduser service
         $.ajax({
@@ -155,6 +159,7 @@ function saveUser(event) {
 
                 // Clear the form inputs
                 $('#addUser fieldset input').val('');
+				 $('#addUser fieldset textarea').val('');
 				$('#addUser fieldset input[type=radio]').attr('checked', false);
 				$('#addUser fieldset input[type=checkbox]').attr('checked', false);
 
@@ -173,7 +178,6 @@ function saveUser(event) {
         return false;
     }
 };
-
 // Delete User
 function deleteUser(event) {
 
@@ -183,8 +187,7 @@ function deleteUser(event) {
     var confirmation = confirm('Are you sure you want to delete this user?');
 
     // Check and make sure the user confirmed
-	alert('check3'+ $(this).attr('rel'));
-    if (confirmation === true) {
+	if (confirmation === true) {
 
         // If they did, do our delete
         $.ajax({
@@ -193,7 +196,8 @@ function deleteUser(event) {
         }).done(function( response ) {
 			alert('response'+response);
             // Check for a successful (blank) response
-			if (response.msg === '') {
+			alert('searchUsers222');
+            if (response.msg === '') {
             }
             else {
                 alert('Error: ' + response.msg);
@@ -212,5 +216,54 @@ function deleteUser(event) {
         return false;
 
     }
-
+	
 };
+
+
+//searchUser
+
+function findUser(event) {
+	// Prevent Link from Firing
+   event.preventDefault();
+   
+   var tableContent = '';
+   
+   var user = {'userType' : $('#addUser fieldset #searchUsers :selected').val()};
+
+        $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/users/searchUser/",
+        dataType: "json",
+		data: user,
+		success: function(data) { 
+		  if(data != null){
+			
+			$.each(data, function(){
+            tableContent += '<tr>';
+            tableContent += '<td>' + this.userType + '</td>';
+			tableContent += '<td>' + this.firstName + '</td>';
+			tableContent += '<td>' + this.lastName + '</td>';
+			tableContent += '<td>' + this.dob + '</td>';
+			tableContent += '<td>' + this.gender + '</td>';
+			tableContent += '<td>' + this.address + '</td>';
+			tableContent += '<td>' + this.MobilePhone + '</td>';
+            tableContent += '<td>' + this.email + '</td>';		
+            tableContent += '<td>' + this.usrdet+ '</a></td>';
+            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+            tableContent += '</tr>';
+        });
+
+        // Inject the whole content string into our existing HTML table
+        $('#userList table tbody').html(tableContent);
+		    
+			
+		} else{
+		
+			alert('error data not found');
+		}
+		
+		}
+		
+});
+
+}

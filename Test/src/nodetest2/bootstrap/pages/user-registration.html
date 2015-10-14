@@ -23,6 +23,8 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
+	<script type= "text/javascript" src="../dist/js/countries.js"></script>
+	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -173,11 +175,11 @@
 
                                         <div class="form-group">
                                             <label>Fisrt Name </label>
-                                            <input id="firstName" class="form-control" type=text required placeholder="Enter Name">
+                                            <input id="firstName" type=text name=firstname onChange="isAlphabet(this.value)" class="form-control" placeholder="Enter Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name </label>
-                                            <input id="lastName" class="form-control" type=text required placeholder="Enter Name">
+                                            <input id="lastName" name=lastname class="form-control" type=text onChange="isAlphabet(this.value)"  placeholder="Enter Name">
                                         </div>										
                                         <div class="form-group">
                                             <label>Date of Birth</label>
@@ -195,7 +197,16 @@
 
 										<div class="form-group">
 											<label>Address:</label>
-											<textarea id="address" type=text class="form-control" maxlength=1000 rows="4"></textarea>
+											<textarea id="address" type=text class="form-control" maxlength=1000 rows="3"></textarea>
+										</div>
+										<div class="form-group">
+											<label>State</label> 
+											<select class="form-control" id="country" name="country"></select>
+											<label>District</label>
+											<select class="form-control" id="state" name="state"></select>
+											<script language="javascript">
+											  populateCountries("country", "state");
+											</script>
 										</div>
 
 										<div class="form-group">

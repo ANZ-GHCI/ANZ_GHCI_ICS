@@ -91,5 +91,17 @@ router.post('/login', function(req,res) {
 });
 
 
+/*
+* search patient
+*/
+router.post('/searchUser', function(req, res) {
+    var db = req.db;
+    var collection = db.get('userlist');
+	var usersToFetch = req.body;
+	collection.find( usersToFetch,function(err,data) {
+		res.json(data);		
+    });
+});
+
 
 module.exports = router;
