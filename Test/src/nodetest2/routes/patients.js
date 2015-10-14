@@ -20,8 +20,8 @@ router.get('/patientlist', function(req, res) {
 router.post('/searchPatient', function(req, res) {
     var db = req.db;
     var collection = db.get('patientlist');
-	var userToFetch = req.body.firstName;
-	collection.findOne({"firstName":userToFetch},function(err,data) {
+	var patientToFetch = req.body.patient_id;
+	collection.findOne({"patient_id":patientToFetch},function(err,data) {
 		res.json(data);		
     });
 });

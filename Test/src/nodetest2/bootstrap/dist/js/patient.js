@@ -95,7 +95,7 @@ function findPatient(event) {
 	// Prevent Link from Firing
    event.preventDefault();
    //window.location="patient-registration.html";
-   var patient = {'firstName' : $('#patientid').val()};
+   var patient = {'patient_id' : $('#patientid').val()};
 
         $.ajax({
         type: "POST",
@@ -160,7 +160,6 @@ function savePatient(event) {
             // If it is, compile all user info into one object
         var newPatient = preparePatientJson();
 		var datestring = newPatient.dob.substring(8, 10)+newPatient.dob.substring(5, 7)+newPatient.dob.substring(0, 4);
-		alert('patient id : '+newPatient.firstName.substring(0, 4)+datestring);
 		newPatient.patient_id = newPatient.firstName.substring(0, 4)+newPatient.lastName.substring(0,1)+datestring;
 		
         // Use AJAX to post the object to our adduser service
@@ -189,11 +188,14 @@ function updatePatient(event) {
     event.preventDefault();
     // Pop up a confirmation dialog
     
-    var patientDetails = preparePatientJson();	   
+    var patientDetails = preparePatientJson();	  
+	var datestring = patientDetails.dob.substring(8, 10)+patientDetails.dob.substring(5, 7)+patientDetails.dob.substring(0, 4);
+	patientDetails.patient_id = patientDetails.firstName.substring(0, 4)+patientDetails.lastName.substring(0,1)+datestring;	
+	alert('patient id : '+patientDetails.patient_id);
 		
         $.ajax({
             type: 'PUT',
-            url: 'http://localhost:3000/patients/updatepatient/' + $('#patient_id').val(),
+            url: 'http://localhost:3000/patients/updatepatient/' + $('#identifier').val(),
 			data: patientDetails
         }).done(function( response ) {
 			
