@@ -318,7 +318,7 @@
 
                         </li>
                         <li>
-                            <a href="userslist.html"><i class="fa fa-table fa-fw"></i> Feedback</a>
+                            <a href="feedback.html"><i class="fa fa-table fa-fw"></i> Feedback</a>
                         </li>
                         
                     </ul>			
@@ -328,9 +328,134 @@
         </nav>
 
         <div id="page-wrapper">
+		    <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Patient Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+			<div class="row">
+				<div class="col-lg-12">
+				<div class="panel panel-default">
+				    <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" >
+                                    <thead>
+                                        <tr>
+                                            <th>Place</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX">
+                                            <td>Bangalore</td>
+                                            <td>22-09-2015</td>
+                                        </tr> 
+                                    </tbody>
+
+									<thead><tr><th>PERSONAL INFORMATION</th><th></th></tr></thead>
+
+                                    <tbody class="odd gradeX">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>DOB</th>
+                                        </tr>
+
+                                        <tr class="odd gradeX">
+                                            <td id="firstName"></td>
+                                            <td>22-09-2015</td>
+                                        </tr>  
+                                        <tr>
+                                            <th>Address</th>
+                                            <th>Home phone</th>
+                                        </tr>                                    
+                                        <tr class="odd gradeX">
+                                            <td># 245 , 18th cross, kalyana nagar, bangalore 43</td>
+                                            <td>08053638483</td>
+                                        </tr> 
+
+                                        <tr>
+                                            <th>Mobile phone</th>
+                                            <th>Email</th>
+                                        </tr>                                    
+                                        <tr class="odd gradeX">
+                                            <td>78201821021</td>
+                                            <td>rama07@gmail.com</td>
+                                        </tr> 
+
+                                        <tr>
+                                            <th>Income per annum</th>
+                                            <th>Occupation</th>
+                                        </tr>                                    
+                                        <tr class="odd gradeX">
+                                            <td>>2L</td>
+                                            <td>Agriculture</td>
+                                        </tr> 
+
+                                        <tr>
+                                            <th>Education</th>
+                                            <th>Marital status</th>
+                                        </tr>                                    
+                                        <tr class="odd gradeX">
+                                            <td>3rd STD</td>
+                                            <td>Married</td>
+                                        </tr> 
+                                    </tbody>
+
+									<thead><tr><th>LIFESTYLE HABITS</th><th></th></tr></thead>
+
+									<tbody class="odd gradeX">
+											<tr>
+												<th> Smoking </th>
+												<td> Type </td>
+											</tr>
+
+											 <tr>
+												<td> <input type="radio" value="Yes" name="smoking"/> Yes 
+													 <input type="radio" value="No" name="smoking"/> No </td>	
+												<td> -------- </td>							
+											 </tr>
+
+											 <tr>
+												<td> Quantity in a day </td>
+												<td> Duration in Hrs </td>
+											 </tr>
+
+											 <tr>
+												<td> 2 packs</td>	
+												<td> every 2 hrs </td>							
+											 </tr>
+
+											 <tr>
+												<th> Chewing Tobacco </th>
+												<td> Type </td>
+											 </tr>
+
+											 <tr>
+												<td> <input type="radio" value="Yes" name="smoking"/> Yes 
+													 <input type="radio" value="No" name="smoking"/> No </td>	
+												<td> -------- </td>							
+											 </tr>
+
+											 <tr>
+												<td> Quantity in a day </td>
+												<td> Age of starting / Duration in Hrs </td>
+											 </tr>
+
+											 <tr>
+												<td> 2 packs</td>	
+												<td> every 2 hrs </td>							
+											 </tr>
+
+									</tbody>
+								</table>
+
+                    </div> 
+				</div>
+				</div>
+			</div>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Forms</h1>
+                    <h1 class="page-header">Clinical Examination</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -339,419 +464,500 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Clinical Examinations
+                            Patient:
                         </div>
 						<div class="dataTable_wrapper">
 						<div id="addClinicalExam">
 						<fieldset>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <form role="form">
-                                        <div class="form-group">
-                                            <label>Medical</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">CVS</p></td>
-															<td><input id="CVSTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Pulse</p></td>
-															<td><input id="PulseTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">BP</p></td>
-															<td><input id="BPTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">RS</p></td>
-															<td><input id="RSTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Liver</p></td>
-															<td><input id="LiverTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Spleen</p></td>
-															<td><input id="SpleenTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Lymphnodes</p></td>
-															<td><input id="LymphTxt" type=text class="form-control"></td>
-															<td></td><td></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>	
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Surgical</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Breasts</p></td>
-															<td><input id="BreastsTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Thyroid</p></td>
-															<td><input id="ThyroidTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Bones & Skin</p></td>
-															<td><input id="BonesTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Testes</p></td>
-															<td><input id="TestesTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">PR</p></td>
-															<td><input id="PRTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">PA</p></td>
-															<td><input id="PATxt" type=text class="form-control"></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>	
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Head & Neck</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Pharynx</p></td>
-															<td><input id="PharynxTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Larynx</p></td>
-															<td><input id="LarynxTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Post 1/3 Tongue</p></td>
-															<td><input id="TongueTxt" type=text class="form-control"></td>
-															<td></td>
-															<td></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>	
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Gynecology History: Age at</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Menarche</p></td>
-															<td><input id="MenarcheTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Marriage</p></td>
-															<td><input id="MarriageTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Delivery</p></td>
-															<td><input id="DeliveryTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Last Delivery</p></td>
-															<td><input id="LastDeliveryTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Menopause</p></td>
-															<td><input id="MenopauseTxt" type=text class="form-control"></td>
-															<td></td>
-															<td></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>	
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Obstetric History</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">No. of Pregnancies</p></td>
-															<td><input id="PregNumTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Still Birth</p></td>
-															<td><input id="StillBirthTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">No. of Abortions</p></td>
-															<td><input id="AbortNumTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Living Children</p></td>
-															<td><input id="ChildNumTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Breast Feeding</p></td>
-															<td><input id="BreastFeedTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Bottle Feeding</p></td>
-															<td><input id="BottleFeedTxt" type=text class="form-control"></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>	
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Menstrual History</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Cycle Regular</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="cycle" id="cycleOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="cycle" id="cycleOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Discharge PV</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="discharge" id="dischargeOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="discharge" id="dischargeOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Post Menopausal Bleeding</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="postMenopause" id="postMenopauseOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="postMenopause" id="postMenopauseOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Post Coital Bleeding</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="postCoital" id="postCoitalOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="postCoital" id="postCoitalOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Inter Menstrual Bleeding</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="interMenstrual" id="interMenstrualOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="interMenstrual" id="interMenstrualOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-													</tbody>
-												</table>
+										<div class="panel-group" id="accordion">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Medical</a>
+													</h4>
+												</div>
+												<div id="collapseOne" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">CVS</p></td>
+																		<td><input id="CVSTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Pulse</p></td>
+																		<td><input id="PulseTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">BP</p></td>
+																		<td><input id="BPTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">RS</p></td>
+																		<td><input id="RSTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Liver</p></td>
+																		<td><input id="LiverTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Spleen</p></td>
+																		<td><input id="SpleenTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Lymphnodes</p></td>
+																		<td><input id="LymphTxt" type=text class="form-control"></td>
+																		<td></td><td></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>	
+													</div>
+												</div>
 											</div>
-                                        </div>
-										
-                                        <div class="form-group">
-                                            <label>Family Planning</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Loop</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="fpLoop" id="fpLoopOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="fpLoop" id="fpLoopOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Pills</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="fpPills" id="fpPillsOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="fpPills" id="fpPillsOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Tubectomy</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="fpTubectomy" id="fpTubectomyOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="fpTubectomy" id="fpTubectomyOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Vasectomy</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="fpVasectomy" id="fpVasectomyOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="fpVasectomy" id="fpVasectomyOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Others, Specify</p></td>
-															<td>
-																<input id="fpOthersTxt" type=text class="form-control">
-															</td>
-														</tr>
-													</tbody>
-												</table>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Surgical</a>
+													</h4>
+												</div>
+												<div id="collapseTwo" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Breasts</p></td>
+																		<td><input id="BreastsTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Thyroid</p></td>
+																		<td><input id="ThyroidTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Bones & Skin</p></td>
+																		<td><input id="BonesTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Testes</p></td>
+																		<td><input id="TestesTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">PR</p></td>
+																		<td><input id="PRTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">PA</p></td>
+																		<td><input id="PATxt" type=text class="form-control"></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>	
+													</div>
+												</div>
 											</div>
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Gynecological Examination</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Health</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="geHealth" id="geHealthOption1" value="option1" >Healthy
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="geHealth" id="geHealthOption2" value="option2">Unhealthy
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Cervicitis</p></td>
-															<td>
-																<label class="radio-inline">
-																	<input type="radio" name="geCervicitis" id="geCervicitisOption1" value="option1" >Yes
-																</label>
-																<label class="radio-inline">
-																	<input type="radio" name="geCervicitis" id="geCervicitisOption2" value="option2">No
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Contact Bleeding</p></td>
-															<td>
-																<input id="geBleedingTxt" type=text class="form-control">
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Growth, Specify</p></td>
-															<td>
-																<input id="geGrowthTxt" type=text class="form-control">
-															</td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Abnormal, Specify</p></td>
-															<td>
-																<input id="geAbnormalTxt" type=text class="form-control">
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Investigations if Necessary</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="ecg" type="checkbox">ECG
-																</label>
-															</td>
-															<td>															
-																<label class="checkbox-inline">
-																	<input id="chestXRay" type="checkbox">Chest X-Ray
-																</label>
-															</td>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="baSwallow" type="checkbox">BA Swallow
-																</label>
-															</td>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="fnac" type="checkbox">FNAC
-																</label>
-															</td>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="biopsy" type="checkbox">Biopsy
-																</label>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="papsmear" type="checkbox">PAP Smear
-																</label>
-															</td>
-															<td>															
-																<label class="checkbox-inline">
-																	<input id="ecto" type="checkbox">ECTO
-																</label>
-															</td>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="endo" type="checkbox">ENDO
-																</label>
-															</td>
-															<td>
-																<label class="checkbox-inline">
-																	<input id="postFX" type="checkbox">Post FX
-																</label>
-															</td>
-															<td></td>
-														</tr>
-														
-													</tbody>
-												</table>
-											</div>
-                                        </div>
-										
-										<div class="form-group">
-                                            <label>Clinical Diagnosis</label>
-											<div class="table-responsive table-bordered">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><p class="form-control-static">Normal</p></td>
-															<td><input id="cdNormalTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Beginning</p></td>
-															<td><input id="cdBeginningTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Pre cancer</p></td>
-															<td><input id="cdPreCancerTxt" type=text class="form-control"></td>
-														</tr>
-														<tr>
-															<td><p class="form-control-static">Suspicious</p></td>
-															<td><input id="cdSuspiciousTxt" type=text class="form-control"></td>
-															<td><p class="form-control-static">Detected</p></td>
-															<td><input id="cdDetectedTxt" type=text class="form-control"></td>
-															<td></td>
-															<td></td>
-														</tr>
-													</tbody>
-												</table>
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Head & Neck</a>
+													</h4>
+												</div>
+												<div id="collapseThree" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Pharynx</p></td>
+																		<td><input id="PharynxTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Larynx</p></td>
+																		<td><input id="LarynxTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Post 1/3 Tongue</p></td>
+																		<td><input id="TongueTxt" type=text class="form-control"></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>	
+													</div>
+												</div>
 											</div>	
-                                        </div>
-										
-                                        <button type="submit" id="submitClinicalExam" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" id="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Gynecology History: Age at</a>
+													</h4>
+												</div>
+												<div id="collapseFour" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Menarche</p></td>
+																		<td><input id="MenarcheTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Marriage</p></td>
+																		<td><input id="MarriageTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Delivery</p></td>
+																		<td><input id="DeliveryTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Last Delivery</p></td>
+																		<td><input id="LastDeliveryTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Menopause</p></td>
+																		<td><input id="MenopauseTxt" type=text class="form-control"></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>	
+													</div>
+												</div>
+											</div>	
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Obstetric History</a>
+													</h4>
+												</div>
+												<div id="collapseFive" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">No. of Pregnancies</p></td>
+																		<td><input id="PregNumTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Still Birth</p></td>
+																		<td><input id="StillBirthTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">No. of Abortions</p></td>
+																		<td><input id="AbortNumTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Living Children</p></td>
+																		<td><input id="ChildNumTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Breast Feeding</p></td>
+																		<td><input id="BreastFeedTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Bottle Feeding</p></td>
+																		<td><input id="BottleFeedTxt" type=text class="form-control"></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>	
+													</div>
+												</div>
+											</div>
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Menstrual History</a>
+													</h4>
+												</div>
+												<div id="collapseSix" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Cycle Regular</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="cycle" id="cycleOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="cycle" id="cycleOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Discharge PV</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="discharge" id="dischargeOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="discharge" id="dischargeOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Post Menopausal Bleeding</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="postMenopause" id="postMenopauseOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="postMenopause" id="postMenopauseOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Post Coital Bleeding</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="postCoital" id="postCoitalOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="postCoital" id="postCoitalOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Inter Menstrual Bleeding</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="interMenstrual" id="interMenstrualOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="interMenstrual" id="interMenstrualOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>		
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Family Planning</a>
+													</h4>
+												</div>
+												<div id="collapseSeven" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Loop</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpLoop" id="fpLoopOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpLoop" id="fpLoopOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Pills</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpPills" id="fpPillsOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpPills" id="fpPillsOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Tubectomy</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpTubectomy" id="fpTubectomyOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpTubectomy" id="fpTubectomyOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Vasectomy</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpVasectomy" id="fpVasectomyOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="fpVasectomy" id="fpVasectomyOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Others, Specify</p></td>
+																		<td>
+																			<input id="fpOthersTxt" type=text class="form-control">
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Gynecological Examination</a>
+													</h4>
+												</div>
+												<div id="collapseEight" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Health</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="geHealth" id="geHealthOption1" value="option1" >Healthy
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="geHealth" id="geHealthOption2" value="option2">Unhealthy
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Cervicitis</p></td>
+																		<td>
+																			<label class="radio-inline">
+																				<input type="radio" name="geCervicitis" id="geCervicitisOption1" value="option1" >Yes
+																			</label>
+																			<label class="radio-inline">
+																				<input type="radio" name="geCervicitis" id="geCervicitisOption2" value="option2">No
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Contact Bleeding</p></td>
+																		<td>
+																			<input id="geBleedingTxt" type=text class="form-control">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Growth, Specify</p></td>
+																		<td>
+																			<input id="geGrowthTxt" type=text class="form-control">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Abnormal, Specify</p></td>
+																		<td>
+																			<input id="geAbnormalTxt" type=text class="form-control">
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">Investigations if Necessary</a>
+													</h4>
+												</div>
+												<div id="collapseNine" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="ecg" type="checkbox">ECG
+																			</label>
+																		</td>
+																		<td>															
+																			<label class="checkbox-inline">
+																				<input id="chestXRay" type="checkbox">Chest X-Ray
+																			</label>
+																		</td>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="baSwallow" type="checkbox">BA Swallow
+																			</label>
+																		</td>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="fnac" type="checkbox">FNAC
+																			</label>
+																		</td>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="biopsy" type="checkbox">Biopsy
+																			</label>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="papsmear" type="checkbox">PAP Smear
+																			</label>
+																		</td>
+																		<td>															
+																			<label class="checkbox-inline">
+																				<input id="ecto" type="checkbox">ECTO
+																			</label>
+																		</td>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="endo" type="checkbox">ENDO
+																			</label>
+																		</td>
+																		<td>
+																			<label class="checkbox-inline">
+																				<input id="postFX" type="checkbox">Post FX
+																			</label>
+																		</td>
+																		<td></td>
+																	</tr>
+																	
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Clinical Diagnosis</a>
+													</h4>
+												</div>
+												<div id="collapseTen" class="panel-collapse collapse in">
+													<div class="form-group">
+														<div class="table-responsive table-bordered">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td><p class="form-control-static">Normal</p></td>
+																		<td><input id="cdNormalTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Beginning</p></td>
+																		<td><input id="cdBeginningTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Pre cancer</p></td>
+																		<td><input id="cdPreCancerTxt" type=text class="form-control"></td>
+																	</tr>
+																	<tr>
+																		<td><p class="form-control-static">Suspicious</p></td>
+																		<td><input id="cdSuspiciousTxt" type=text class="form-control"></td>
+																		<td><p class="form-control-static">Detected</p></td>
+																		<td><input id="cdDetectedTxt" type=text class="form-control"></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>	
+													</div>
+												</div>
+											</div>
+											<input type="text" id="patientid" value=""/>
+											<button type="submit" id="submitClinicalExam" class="btn btn-default">Submit</button>
+											<button type="reset" id="reset" class="btn btn-default">Reset</button>
+										</div>
+									</form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -784,6 +990,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/clinicalExam.js"></script>
+	    <script src="../dist/js/doctors.js"></script>
 
 </body>
 

@@ -17,10 +17,11 @@ router.get('/patientlist', function(req, res) {
 /*
 * search patient
 */
-router.post('/searchPatient', function(req, res) {
+router.get('/searchPatient/:id', function(req, res) {
     var db = req.db;
     var collection = db.get('patientlist');
-	var patientToFetch = req.body.patient_id;
+	var patientToFetch = req.params.id;
+	console.log('patientToFetch'+patientToFetch);
 	collection.findOne({"patient_id":patientToFetch},function(err,data) {
 		res.json(data);		
     });
@@ -98,5 +99,16 @@ router.post('/addClinicalExam', function(req, res) {
     });
 });
 
+
+/*
+ * GET clinicalExamlist.
+ */
+router.get('/searchPatientClinicalExam', function(req, res) {
+    var db = req.db;
+    var collection = db.get('clinicalExamList');
+    collection.find({},{},function(e,docs){
+        res.json(docs);
+    });
+});
 
 module.exports = router;

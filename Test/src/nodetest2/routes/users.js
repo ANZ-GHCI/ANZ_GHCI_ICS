@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
-
 /*
  * GET userlist.
  */
@@ -102,6 +100,20 @@ router.post('/searchUser', function(req, res) {
 		res.json(data);		
     });
 });
+
+/*
+ * GET userlist.
+ */
+router.get('/patientlist/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('patientlist');
+	var patientID  = req.params.id
+	console.log('id :::'+patientID);;
+    collection.find({patient_id:patientID},{},function(e,docs){
+		res.json(docs);
+    });
+});
+
 
 
 module.exports = router;

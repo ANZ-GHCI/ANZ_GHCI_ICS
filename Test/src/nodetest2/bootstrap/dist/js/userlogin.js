@@ -4,9 +4,8 @@ $(function() {
 	$(document).ready(function(){
    	   // check login details button click
 	    $('#userLogin').on('click', loginapp); //Submit the form
-	   
-
-});
+		$('#validatepatient').on('click', validatepatient); //validate patientID
+   });
 });
 
 function resetFields(event) {
@@ -37,15 +36,15 @@ function loginapp(event) {
     if(errorCount === 0) {
 
         // If it is, compile all user info into one object
-        var login = {
+        var newUser = {
 			'username': $('#login fieldset input#username').val(),
-			'password': $('#login fieldset input#password').val()
+			'password': $('#login fieldset input#password').val(),
          }
 	
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
-            data: login,
+            data: newUser,
             url: 'http://localhost:3000/users/login',
 			dataType: 'JSON'
         }).done(function( response ) {
@@ -132,3 +131,30 @@ function showUserInfo(event) {
 
 };
 
+function validatepatient(event) {
+    event.preventDefault();
+	var patientid = $('#docapp fieldset input#patinetid').val();
+	if(patientid==''){	
+    	alert('Please enter patient ID');
+		return false;
+	 }
+	// Use AJAX to post the object to our adduser service
+	$.ajax({
+		type: 'GET',
+		url: 'http://localhost:3000/users/patientlist/'+patientid
+		
+	}).done(function( data ) {
+		// Check for successful (blank) response
+		if(data != null){
+			// Clear the form inputs
+			alert('Valid Customer');
+		}
+		else {
+
+			// If something goes wrong, alert the error message that our service returned
+			alert('Please enter valid patient Id');
+
+		}
+	});
+
+};

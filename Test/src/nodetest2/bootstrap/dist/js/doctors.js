@@ -3,14 +3,119 @@ var doctorListData = [];
 
 $(function() {
 	$(document).ready(function(){ 
-	    // Username link click
-   	   // Add User button click
-	    $('#btnAddPatient').on('click', addDoctor); //Submit the form
-		alert('doctors.js');
-		populateTable();
+
+   	   // fetch patient list assigned to doctor
+		populatePatientTable();
 		
+		// patient reg no link click
+   	//  $('#fetchPatient').on('click', fetchPatientdet()); //Submit the form
+		 $('#listPatient table tbody').on('click', 'td a.linkClinicalInfo', fetchPatientdet);	
 	});
 });	
+
+function populatePatientTable() {  
+    // Empty content string
+   // var tableContent = '';
+       var tableContent ="<table class='table table-striped table-hover '>";
+
+    // jQuery AJAX call for JSON
+    $.getJSON( 'http://localhost:3000/patients/patientlist', function( data ) { 
+		
+		    // Stick our user data array into a userlist variable in the global object
+    patientListData = data;
+	
+        // For each item in our JSON, add a table row and cells to the content string
+        $.each(data, function(){
+			
+				tableContent += "<tr class='warning'>";
+			
+           // tableContent += '<tr>';
+														
+			tableContent += '<td><a href="#" class="linkClinicalInfo" rel="' + this._id + '">BLR 056 1220</a></td>';											
+			tableContent += '<td>' + this.firstName + '</td>';
+			tableContent += '<td>' + this.lastName + '</td>';
+			tableContent += '<td>' + this.dob + '</td>';
+			tableContent += '<td>' + this.gender + '</td>';
+			tableContent += '<td>' + this.address + '</td>';
+			tableContent += '<td>' + this.MobilePhone + '</td>';
+            tableContent += '<td>' + this.email + '</td>';		
+            tableContent += '<td><a href="#" class="linkClinicalInfo" rel="' + this._id + '">Info</a></td>';
+            tableContent += '</tr>';
+        });
+		
+        // Inject the whole content string into our existing HTML table
+       $('#listPatient table tbody').html(tableContent);
+
+    });
+};
+
+
+
+// fetchPatient details
+function fetchPatientdet(event) {  
+	alert('000'+ $(this).attr('rel'));
+	//fetching the patient id and passing to the next html
+	var patient_Id= $('#fetchPatient').attr('rel');
+	
+	//alert($('#fetchPatient').attr('rel'));
+    event.preventDefault();
+		
+	var patient = {'patient_id' : $(this).attr('rel')};
+
+	$.ajax({
+        type: "POST",
+        url: "http://localhost:3000/patients/patientlist/",
+        dataType: "json",
+		data: patient,
+		success: function(data) { 
+			patientListData = data; 
+			var thisUserObject = patientListData[0];
+		
+		//	$.each(data, function(){
+				//$('#patient_id').val(thisUserObject.patientId);
+				$('#patientid').val(patient_Id);
+				alert(patient_Id); 
+				alert(thisUserObject.firstName);
+				$('#firstName').val()=thisUserObject.firstName;
+				$('#patientid').val()=thisUserObject.firstName;
+				//$('#lastName').val(thisUserObject.lastName);
+				//	$('#patient_id').val(thisUserObject._id);
+				//$('#firstName').val(thisUserObject.firstName);
+				//$('#lastName').val(thisUserObject.lastName);
+				//$('#email').val(thisUserObject.email);
+				//$('#dob').val(thisUserObject.dob);
+				//$("[name=gender]").val([thisUserObject.gender]);
+				//$('#address').val(thisUserObject.address);				
+				//$('#homePhone').val(thisUserObject.homePhone);
+				//$('#MobilePhone').val(thisUserObject.MobilePhone);
+				//$('#income').val(thisUserObject.income);
+				//$('#occupation').val(thisUserObject.occupation);
+				//$('#education').val(thisUserObject.education);
+				//$('#religion').val(thisUserObject.religion);
+				//$('#maritalStatus').val(thisUserObject.maritalStatus);
+				//$('#noofChildren').val(thisUserObject.noofChildren);
+				
+				//$("[name=smoke]").val([thisUserObject.smoke]);
+				//$("[name=chewing]").val([thisUserObject.chewing]);
+				//$("[name=snuffing]").val([thisUserObject.snuffing]);
+				//$("[name=alcohol]").val([thisUserObject.alcohol]);
+				//$("[name=food]").val([thisUserObject.food]);
+				
+				
+				//$("[id=diabetes]").val([thisUserObject.diabetes]);
+				//$("[id=bp]").val([thisUserObject.bp]);
+				//$("[id=tb]").val([thisUserObject.tb]);
+				//$("[id=heart_disease]").val([thisUserObject.heart_disease]);
+				//$("[id=cancer]").val([thisUserObject.cancer]);
+				//$("[id=others]").val([thisUserObject.others]);
+			//});
+		    }
+		});
+	window.location="clinicalExamination.html?patientid='"+patient_Id+"'";
+	
+};	
+
+
 
 	
 $(function() {

@@ -90,19 +90,14 @@ function populateTable() {
     });
 };
 
-
 function findPatient(event) {
 	// Prevent Link from Firing
    event.preventDefault();
    //window.location="patient-registration.html";
-   var patient = {'patient_id' : $('#patientid').val()};
-
         $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/patients/searchPatient/",
-        dataType: "json",
-		data: patient,
-		success: function(data) { 
+        type: "GET",
+        url: "http://localhost:3000/patients/searchPatient/"+$('#patientid').val()
+		}).done(function( data ) {
 		alert(data); 
 		  if(data != null){
 			
@@ -142,13 +137,13 @@ function findPatient(event) {
 		} else{
 		
 			alert('error data not found');
-		}
+		}	
 		
-		}
 		
 });
 
 }
+
 
 // Add User
 function savePatient(event) {
