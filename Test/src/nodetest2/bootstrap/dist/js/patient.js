@@ -10,17 +10,11 @@ $(function() {
 				savePatient(event); //Add the patient
 			}	
 		});
-		$('#reset').on('click', resetFields); //Reset the form
 		$('#searchPatient').on('click', findPatient); //searchPatient
 
 	});
 });
-
-function resetFields(event) {
-
-	event.preventDefault();
-	window.location="patient-registration.html";
-}				
+			
 				
 $(function() {
 
@@ -149,7 +143,9 @@ function findPatient(event) {
 function savePatient(event) {
     alert('add');
 	// Super basic validation - increase errorCount variable if any fields are blank
-	//$("#patientRegistrationForm").validate();
+	if(!$("#patientRegistrationForm")[0].checkValidity()){
+		return false;
+	}
 	event.preventDefault();
 	// Check and make sure errorCount's still at zero
             // If it is, compile all user info into one object
@@ -167,7 +163,10 @@ function savePatient(event) {
 		  alert('response : '+response);
 			// Check for successful (blank) response
             if (response.msg === '') {
-				window.location="patient-registration.html";
+				$("[id=alertmsge]").attr('hidden', false);
+				$("[id=createdId]").val(newPatient.patient_id);
+				//$("#patientRegistrationForm")[0].reset();
+				
             }
             else {
                 // If something goes wrong, alert the error message that our service returned
