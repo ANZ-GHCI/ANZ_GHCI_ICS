@@ -111,4 +111,22 @@ router.get('/searchPatientClinicalExam', function(req, res) {
     });
 });
 
+/*
+ * Assign doctor
+ */
+router.put('/assignDoctor', function(req, res) {
+    var db = req.db;
+	var patient = req.body;
+    var collection = db.get('patientlist');
+    var patientToUpdate = patient.patient_id;
+	console.log('patientToUpdate ::::'+patientToUpdate);
+	collection.update({'patient_id':patientToUpdate}, {$set:{assignedDoctor:req.body.email}}, {safe:true}, function(err, result) {
+	    res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+	});
+    
+
+});
+
 module.exports = router;

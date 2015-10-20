@@ -114,6 +114,18 @@ router.get('/patientlist/:id', function(req, res) {
     });
 });
 
+/*
+ * GET doctors userlist.
+ */
+router.get('/doctorslist', function(req, res) {
+	console.log('retrieve doctors list');
+    var db = req.db;
+    var collection = db.get('userlist');
+    collection.find({"userType":"Doctor"},{"firstName":1, "lastName":2,"email":0},function(e,docs){
+        res.json(docs);
+    }); 
+});
+
 
 
 module.exports = router;

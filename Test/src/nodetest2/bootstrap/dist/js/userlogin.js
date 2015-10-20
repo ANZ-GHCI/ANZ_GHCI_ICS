@@ -4,7 +4,7 @@ $(function() {
 	$(document).ready(function(){
    	   // check login details button click
 	    $('#userLogin').on('click', loginapp); //Submit the form
-		$('#validatepatient').on('click', validatepatient); //validate patientID
+		
    });
 });
 
@@ -128,33 +128,5 @@ function showUserInfo(event) {
     $('#religion').val(thisUserObject.religion);
     $('#maritalStatus').val(thisUserObject.maritalStatus);
     $('#noofChildren').val(thisUserObject.noofChildren);
-
-};
-
-function validatepatient(event) {
-    event.preventDefault();
-	var patientid = $('#docapp fieldset input#patinetid').val();
-	if(patientid==''){	
-    	alert('Please enter patient ID');
-		return false;
-	 }
-	// Use AJAX to post the object to our adduser service
-	$.ajax({
-		type: 'GET',
-		url: 'http://localhost:3000/users/patientlist/'+patientid
-		
-	}).done(function( data ) {
-		// Check for successful (blank) response
-		if(data != null){
-			// Clear the form inputs
-			alert('Valid Customer');
-		}
-		else {
-
-			// If something goes wrong, alert the error message that our service returned
-			alert('Please enter valid patient Id');
-
-		}
-	});
 
 };

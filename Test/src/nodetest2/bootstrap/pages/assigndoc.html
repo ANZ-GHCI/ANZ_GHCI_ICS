@@ -22,20 +22,8 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
-	<script type= "text/javascript" src="../dist/js/doctors_list.js"></script>
-	
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		
-    <![endif]-->
-	
 
-
-</head>
+	</head>
 
 <body>
 
@@ -160,23 +148,20 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-								<div id="docapp">
+								<div id="assignDoctor">
 								<fieldset>
                                         <div class="form-group">
                                             <label>Patient ID </label>
-                                            <input type=text id="patinetid" class="form-control" placeholder="Enter a Patient ID">
+                                            <input type=text id="patientid" class="form-control" placeholder="Enter a Patient ID">
                                         </div>
                                         <button id="validatepatient" class="btn btn-default">Validate Patient </button>										
 
 										<div class="form-group">
 											<label>Assign a Doctor </label> 
-											<select class="form-control" id="assdoc" name="assdoc"></select>
-											<script language="javascript">
-											  populateDoctors("assdoc");
-											</script>
+											<select class="form-control" id="doctor" name="doctor"></select>
 										</div>
 
-										<button type="Register" id="appoint" class="btn btn-default">Fix Appoinment</button>																						
+										<button type="submit" id="assign" class="btn btn-default">Fix Appoinment</button>																						
 										
                                   </fieldset>	
 								  </div>
@@ -209,8 +194,8 @@
 
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/userRegistration.js"></script>
-	<script src="../dist/js/userlogin.js"></script>
+    <script src="../dist/js/assigndoctor.js"></script>
+	
 	
 	    <!-- DataTables JavaScript -->
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
@@ -224,10 +209,6 @@
         });
     });
     </script>
-
-
-	
 </body>
 
 </html>
-fd

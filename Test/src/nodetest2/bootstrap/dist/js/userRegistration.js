@@ -7,9 +7,7 @@ $(function() {
 		$('#reset').on('click', resetFields); //Reset the form		
 		$('#searchUsers').on('change', findUser); //Populate the table data		
         $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);		
-		
-
-	});
+		});
 });
 
 function resetFields(event) {
@@ -143,7 +141,8 @@ function saveUser(event) {
 			'mobilePhone': $('#addUser fieldset input#MobilePhone').val(),
 			'email': $('#addUser fieldset input#email').val(),
 		    'usrdet': $('#addUser fieldset textarea#usrdet').val(),
-			'createdDate':new Date()
+			'createdDate':new Date(),
+			'available':'Yes'
 		   
          }
 		// Use AJAX to post the object to our adduser service
@@ -236,7 +235,7 @@ function findUser(event) {
         dataType: "json",
 		data: user,
 		success: function(data) { 
-		  if(data != null){
+		  if(data != null && typeof data[0] != 'undefined'){
 			
 			$.each(data, function(){
             tableContent += '<tr>';
@@ -262,6 +261,6 @@ function findUser(event) {
 		
 		}
 		
-});
+	});
 
 }
