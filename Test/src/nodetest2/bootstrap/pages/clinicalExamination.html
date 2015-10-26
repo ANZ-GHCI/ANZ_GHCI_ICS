@@ -916,20 +916,20 @@
                         <!-- /.panel-body -->
 						
                     </div>
-					<div class="alert alert-success alert-dismissable" id="alertmsge">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						 Saved Successfully. Patient ID: <span><input type="text" id="patientClinicalid" /> </span>
-						 <button type="button" id="clinicalInfo" class="btn btn-success">Clinical Information</button>
-					</div>					
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
 				<div class="col-lg-12" align="center">
 					<input type="hidden" id="patientid" value=""/>
 					<button type="submit" id="submitClinicalExam" class="btn btn-success">Submit</button>
-					<button type="reset" id="reset" class="btn btn-danger">Reset</button>				
+					<button type="reset" id="reset" class="btn btn-danger">Reset</button>
+					<button type="button" id="assignDoctor" class="btn btn-success">Assign Doctor</button>					
 				</div>
+			
             </div>
+				<div class="alert alert-success" id="alertmsge">
+					 Saved Successfully. Patient ID: <span><input type="text" id="patientClinicalid" /> </span>
+				</div>				
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->

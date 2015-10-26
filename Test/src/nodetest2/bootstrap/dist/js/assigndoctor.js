@@ -4,6 +4,9 @@ $(function() {
 	$(document).ready(function(){  
    	   // Save User button click
 	    populateDoctors('doctor');
+		if($.urlParam('patientid')!=''){
+			$('#patientid').val($.urlParam('patientid'));
+		}
 		$('#validatepatient').on('click', validatepatient); //validate patientID
 		$('#assign').on('click', assignDoctor); //Submit the form		
 	});
@@ -14,6 +17,13 @@ $(function() {
     $('#side-menu').metisMenu();
 
 });
+
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	results[1]=results[1].slice(3);
+	results[1]=results[1].replace("%27", "");
+	return results[1] || 0;
+}
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.

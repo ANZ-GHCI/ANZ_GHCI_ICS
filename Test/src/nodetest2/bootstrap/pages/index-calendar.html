@@ -8,20 +8,22 @@
 <script type="text/javascript" src="../../jqwidgets/jqxcore.js"></script>
 <script type="text/javascript" src="../../jqwidgets/jqxdatetimeinput.js"></script>
 <script type="text/javascript" src="../../jqwidgets/jqxcalendar.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxtooltip.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxbuttons.js"></script>
 <script type="text/javascript" src="../../jqwidgets/globalization/globalize.js"></script>
  </head>
 <body>
 <div id='content'>
   <script type="text/javascript">
       $(document).ready(function () {
-          $("#jqxcalendar").jqxCalendar({ width: '250px', height: '250px' });
-          $('#jqxcalendar').bind('valuechanged', function (event) {
+          $("#jqxdatetimeinput").jqxDateTimeInput({ width: '250px', height: '25px' });
+          $('#jqxdatetimeinput').bind('valuechanged', function (event) {
               var date = event.args.date;
               $("#log").text(date.toDateString());
           });
       });
   </script>  
-  <div id='jqxcalendar'></div>
+  <div id='jqxdatetimeinput'></div>
   <div id='log'></div>
 </div>
 </body>

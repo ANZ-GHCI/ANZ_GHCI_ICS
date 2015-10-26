@@ -224,7 +224,7 @@ function preparePatientJson(){
             'MobilePhone': $('#addPatient fieldset input#MobilePhone').val(),
             'income': $('#addPatient fieldset input#income').val(),
             'occupation': $('#addPatient fieldset input#occupation').val(),
-            'education': $('#addPatient fieldset input#education').val(),
+            'education': $('#addPatient fieldset #education :selected').val(),
             'religion': $('#addPatient fieldset input#religion').val(),
             'maritalStatus': $('#addPatient fieldset input[name=maritalStatus]:checked').val(),
             'noofChildren': $('#addPatient fieldset input#noofChildren').val(),

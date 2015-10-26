@@ -13,6 +13,9 @@ $(function() {
 	});
 		$('#subHeadings').collapse();
 		fetchPatientClinicalDetails();
+		$('#assignDoctor').on('click', function(event) {
+			window.location="assigndoctor.html?patientid='"+ $('#patientClinicalid').val() +"'";
+		});
    	   
 	});
 });
