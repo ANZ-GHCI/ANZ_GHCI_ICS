@@ -330,7 +330,7 @@
         <div id="page-wrapper">
 		    <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Patient Details</h1>
+                    <h2 class="page-header">Patient Details</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -338,133 +338,75 @@
 				<div class="col-lg-12">
 				<div class="panel panel-default">
 				    <div class="dataTable_wrapper">
+						<div id="patientDetails">
+							<fieldset>
                                 <table class="table table-striped table-bordered table-hover" >
-                                    <thead>
-                                        <tr>
-                                            <th>Place</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Bangalore</td>
-                                            <td>22-09-2015</td>
-                                        </tr> 
-                                    </tbody>
-
-									<thead><tr><th>PERSONAL INFORMATION</th><th></th></tr></thead>
-
                                     <tbody class="odd gradeX">
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>DOB</th>
-                                        </tr>
-
                                         <tr class="odd gradeX">
-                                            <td id="firstName"></td>
-                                            <td>22-09-2015</td>
+                                            <td><label>Name : </label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="firstName" readonly></input></td>
+                                            <td><label>DOB : </label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="dob" readonly></input></td>
+
                                         </tr>  
-                                        <tr>
-                                            <th>Address</th>
-                                            <th>Home phone</th>
-                                        </tr>                                    
                                         <tr class="odd gradeX">
-                                            <td># 245 , 18th cross, kalyana nagar, bangalore 43</td>
-                                            <td>08053638483</td>
-                                        </tr> 
-
-                                        <tr>
-                                            <th>Mobile phone</th>
-                                            <th>Email</th>
-                                        </tr>                                    
+											<td><label>Occupation : </label><input type="text" id="occupation" readonly ></td>										
+                                            <td><label>Income per annum : </label><input type="text" id="income" readonly ></td>
+                                        </tr>
                                         <tr class="odd gradeX">
-                                            <td>78201821021</td>
-                                            <td>rama07@gmail.com</td>
-                                        </tr> 
-
-                                        <tr>
-                                            <th>Income per annum</th>
-                                            <th>Occupation</th>
-                                        </tr>                                    
-                                        <tr class="odd gradeX">
-                                            <td>>2L</td>
-                                            <td>Agriculture</td>
-                                        </tr> 
-
-                                        <tr>
-                                            <th>Education</th>
-                                            <th>Marital status</th>
-                                        </tr>                                    
-                                        <tr class="odd gradeX">
-                                            <td>3rd STD</td>
-                                            <td>Married</td>
-                                        </tr> 
-                                    </tbody>
-
-									<thead><tr><th>LIFESTYLE HABITS</th><th></th></tr></thead>
-
-									<tbody class="odd gradeX">
+                                            <td><label>Education : </label><input type="text" id="education" readonly ></td>
+                                            <td><label>Marital status : </label><input type="text" id="maritalStatus" readonly ></td>											
+                                        </tr> 										
+ 
+										<tr><th>LIFESTYLE HABITS</th><th></th></tr>
+											 <tr>
+												<td><label>Smoking : </label> <input type="radio" value="Yes" name="smoke" id="smoke"/> Yes 
+													<input type="radio" value="No" name="smoke" id="smoke"/> No </td>
+													<td><label>Food Category : </label>  <input type="radio" value="Veg" name="food"/> Veg 
+													<input type="radio" value="Non-Veg" name="food"/> Non-Veg </td>
+						
+											 </tr>
+											 <tr>
+												<td><label>Chewing Tobacco : </label> <input type="radio" value="Yes" name="chewing"/> Yes 
+													 <input type="radio" value="No" name="chewing"/> No </td>	
+												<td><label>Snuffing : </label> <input type="radio" value="Yes" name="snuffing"/> Yes 
+													 <input type="radio" value="No" name="snuffing"/> No </td>							
+											 </tr>
+											 <tr>
+												<td><label>Alcohol : </label> <input type="radio" value="Yes" name="alcohol"/> Yes 
+													 <input type="radio" value="No" name="alcohol"/> No </td>	
+												<td></td>
+											 </tr>
+											 
 											<tr>
-												<th> Smoking </th>
-												<td> Type </td>
+												<tr><th>Family History</th><th></th></tr>
 											</tr>
+											<tr><td>
+														<input id="diabetes" type="checkbox">Diabetes
+														<input id="bp" type="checkbox">BP
+														<input id="tb" type="checkbox">TB
 
-											 <tr>
-												<td> <input type="radio" value="Yes" name="smoking"/> Yes 
-													 <input type="radio" value="No" name="smoking"/> No </td>	
-												<td> -------- </td>							
-											 </tr>
-
-											 <tr>
-												<td> Quantity in a day </td>
-												<td> Duration in Hrs </td>
-											 </tr>
-
-											 <tr>
-												<td> 2 packs</td>	
-												<td> every 2 hrs </td>							
-											 </tr>
-
-											 <tr>
-												<th> Chewing Tobacco </th>
-												<td> Type </td>
-											 </tr>
-
-											 <tr>
-												<td> <input type="radio" value="Yes" name="smoking"/> Yes 
-													 <input type="radio" value="No" name="smoking"/> No </td>	
-												<td> -------- </td>							
-											 </tr>
-
-											 <tr>
-												<td> Quantity in a day </td>
-												<td> Age of starting / Duration in Hrs </td>
-											 </tr>
-
-											 <tr>
-												<td> 2 packs</td>	
-												<td> every 2 hrs </td>							
-											 </tr>
+												</td>
+												<td>
+														<input id="heart_disease" type="checkbox">Heart disease
+														<input id="cancer" type="checkbox">Cancer
+														<input id="others" type="checkbox">Others
+												</td>
+											</tr>
 
 									</tbody>
 								</table>
-
-                    </div> 
+							</fieldset>
+						</div>
+                    </div>
 				</div>
 				</div>
 			</div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Clinical Examination</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Patient:
+                            <b>Clinical Examination</b>
                         </div>
 						<div class="dataTable_wrapper">
 						<div id="addClinicalExam">
@@ -477,10 +419,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Medical</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="subHeadings">Medical</a>
 													</h4>
 												</div>
-												<div id="collapseOne" class="panel-collapse collapse in">
+												<div id="collapseOne" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -517,10 +459,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Surgical</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="subHeadings">Surgical</a>
 													</h4>
 												</div>
-												<div id="collapseTwo" class="panel-collapse collapse in">
+												<div id="collapseTwo" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -553,10 +495,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Head & Neck</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id="subHeadings">Head & Neck</a>
 													</h4>
 												</div>
-												<div id="collapseThree" class="panel-collapse collapse in">
+												<div id="collapseThree" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -583,10 +525,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Gynecology History: Age at</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" id="subHeadings">Gynecology History: Age at</a>
 													</h4>
 												</div>
-												<div id="collapseFour" class="panel-collapse collapse in">
+												<div id="collapseFour" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -619,10 +561,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Obstetric History</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" id="subHeadings">Obstetric History</a>
 													</h4>
 												</div>
-												<div id="collapseFive" class="panel-collapse collapse in">
+												<div id="collapseFive" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -652,13 +594,21 @@
 												</div>
 											</div>
 											
+											</div> 
+										</div>
+									</form>
+                                <!-- /.col-lg-6 (nested) -->
+							<div class="col-lg-6">
+                                <form role="form">
+										<div class="panel-group" id="accordion">
+
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Menstrual History</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseSix" id="subHeadings">Menstrual History</a>
 													</h4>
 												</div>
-												<div id="collapseSix" class="panel-collapse collapse in">
+												<div id="collapseSix" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -728,10 +678,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Family Planning</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" id="subHeadings">Family Planning</a>
 													</h4>
 												</div>
-												<div id="collapseSeven" class="panel-collapse collapse in">
+												<div id="collapseSeven" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -796,10 +746,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Gynecological Examination</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseEight" id="subHeadings">Gynecological Examination</a>
 													</h4>
 												</div>
-												<div id="collapseEight" class="panel-collapse collapse in">
+												<div id="collapseEight" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -854,10 +804,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">Investigations if Necessary</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseNine" id="subHeadings">Investigations if Necessary</a>
 													</h4>
 												</div>
-												<div id="collapseNine" class="panel-collapse collapse in">
+												<div id="collapseNine" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -923,10 +873,10 @@
 											<div class="panel panel-default">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														<a data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Clinical Diagnosis</a>
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseTen" id="subHeadings">Clinical Diagnosis</a>
 													</h4>
 												</div>
-												<div id="collapseTen" class="panel-collapse collapse in">
+												<div id="collapseTen" class="panel-collapse collapse">
 													<div class="form-group">
 														<div class="table-responsive table-bordered">
 															<table class="table">
@@ -952,25 +902,28 @@
 														</div>	
 													</div>
 												</div>
-											</div>
-											<input type="text" id="patientid" value=""/>
-											<button type="submit" id="submitClinicalExam" class="btn btn-default">Submit</button>
-											<button type="reset" id="reset" class="btn btn-default">Reset</button>
 										</div>
-									</form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
+                            
                             <!-- /.row (nested) -->
-                        </div>
+									</div>
+								</div>
+							</form>
+						</div>
+						</div>
 						</fieldset>
 						</div>                               
 						</div>
                         <!-- /.panel-body -->
+						
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
+				<div class="col-lg-12" align="center">
+					<input type="hidden" id="patientid" value=""/>
+					<button type="submit" id="submitClinicalExam" class="btn btn-success">Submit</button>
+					<button type="reset" id="reset" class="btn btn-danger">Reset</button>				
+				</div>
             </div>
             <!-- /.row -->
         </div>
@@ -990,7 +943,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/clinicalExam.js"></script>
-	    <script src="../dist/js/doctors.js"></script>
+	<script src="../dist/js/doctors.js"></script>
 
 </body>
 

@@ -101,15 +101,59 @@ router.post('/addClinicalExam', function(req, res) {
 
 
 /*
- * GET clinicalExamlist.
- */
-router.get('/searchPatientClinicalExam', function(req, res) {
+* search clinical exam
+*/
+router.get('/searchClinicalDetails/:id', function(req, res) {
     var db = req.db;
     var collection = db.get('clinicalExamList');
-    collection.find({},{},function(e,docs){
-        res.json(docs);
+	var patientToFetch = req.params.id;
+	console.log('patientToFetch'+patientToFetch);
+	collection.findOne({"patient_id":patientToFetch},function(err,data) {
+		res.json(data);
+		//res.end('clinicalExamination.html');
     });
 });
+
+
+/*
+ * Update clinical examination
+ */
+router.put('/updateClinicalExam/:id', function(req, res) {
+    var db = req.db;
+	var clinicalExamData = req.body;
+    var collection = db.get('clinicalExamList');
+    var dataToUpdate = req.params.id;
+
+	collection.update({'patientid':dataToUpdate}, {"$set":clinicalExamData}, {safe:true}, function(err, result) {
+	console.log(err);
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+	});
+    
+
+});
+
+
+/*
+ * Update patient reg information
+ */
+router.post('/updatepatientreg/:id', function(req, res) {
+    var db = req.db;
+	var patient = req.body;
+    var collection = db.get('patientlist');
+    var userToUpdate = req.params.patient_id;
+
+	collection.update({'patient_id':userToUpdate}, {"$set":patient}, {safe:true}, function(err, result) {
+	console.log(err);
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+	});
+    
+
+});
+
 
 /*
  * Assign doctor

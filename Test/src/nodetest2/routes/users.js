@@ -67,25 +67,14 @@ router.put('/updateuser/:id', function(req, res) {
  */
 router.post('/login', function(req,res) {
 	var db = req.db;
-	var user = req.body;
-    var collection = db.get('useridpwd');
+	var collection = db.get('userlist');
 	var userToFind = req.body.username;
 	var passwordToMatch = req.body.password;
-	    db.collection('users', function(err, collection) {
-	    collection.findone({'userid':userToFind},{},function(e,docs){
-           if (err) {
-                console.log('docs'+docs);
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('' + docs + ' document(s) readed');
-				collection.findone({'userid':userToFind, 'password':passwordToMatch},{},function(e,docs){
-					res.json(docs);
-				});
-				
-            }
-        });
-    });
-
+	console.log('userToFind :::;; '+userToFind+"===="+passwordToMatch);
+	collection.findOne({"email":userToFind,"password":passwordToMatch},function(err,data) {
+		req.session.user = data;
+		res.json(data);
+	});
 });
 
 

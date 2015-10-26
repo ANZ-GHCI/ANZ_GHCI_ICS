@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User-Registration</title>
+    <title>Indian Cancer Society</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,23 +22,29 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
-	<script type= "text/javascript" src="../dist/js/countries.js"></script>
-	
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		
     <![endif]-->
-	
-
-
+	<script type="text/javascript">  
+		function MyAlert(id)  
+		{   var elt =document.getElementById(id);
+			
+			if (elt.checked == true )  
+			{  
+				document.getElementById("ratingValue").value=elt.value;
+				//alert ( "You have selected the rating:" + document.getElementById("ratingValue").value);  
+			} 
+			
+		 }  
+	</script> 
 </head>
 
 <body>
-
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/style.css" />
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -133,121 +139,72 @@
 
                         </li>
                         <li>
-                            <a href="userslist.html"><i class="fa fa-table fa-fw"></i> Feedback</a>
+                            <a href="feedback.html"><i class="fa fa-table fa-fw"></i> Feedback</a>
                         </li>
                         
                     </ul>			
 			</div>
                 <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
+            </div>            <!-- /.navbar-static-side -->
         </nav>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">User Registration Information</h1>
+                    <h1 class="page-header">Doctor Feedback</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            User Registration Information
+                            Rate a doctor
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-								<div id="addUser">
-								<form id="registrationForm">
-								<fieldset>
-                                        <div class="form-group">
-										    <label>User Category</label>
-                                            <select class="form-control" id="usrtype">
-											    <option selected="true" style="display:none;">Select Category</option>
-                                                <option value="ICS Admin"> ICS Admin</option>
-                                                <option value="ICS Staff">ICS Staff</option>
-                                                <option value="Volunteer">Volunteer</option>
-                                                <option value="Doctor">Doctor</option>
+									<form id="ratingsForm">
+										<div class="form-group">
+										    <label>Select a doctor</label>
+                                            <select class="form-control" id="doctorDropDown">
+											    <option selected="true" style="display:none;">Doctor</option>
                                             </select>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label>Fisrt Name </label>
-                                            <input id="firstName" type=text name=firstname onChange="isAlphabet(this.value)" class="form-control" placeholder="Enter Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Last Name </label>
-                                            <input id="lastName" name=lastname class="form-control" type=text onChange="isAlphabet(this.value)"  placeholder="Enter Name">
-                                        </div>										
-                                        <div class="form-group">
-                                            <label>Date of Birth</label>
-											<input id="dob" type="date" placeholder="DD/MM/YY" required  class="form-control" placeholder="Date of Birth">                                          
-                                        </div>
 										<div class="form-group">
-											<label>Gender:</label>
-											<label  class="radio-inline">
-												<input type="radio" name="gender" id="optionsRadios1" value="Male" checked>Male
-											</label>
-											<label  class="radio-inline">
-												<input type="radio" name="gender" id="optionsRadios2" value="Female">Female
-											</label>
-										</div>										
-
-										<div class="form-group">
-											<label>Address:</label>
-											<textarea id="address" type=text class="form-control" maxlength=1000 rows="3"></textarea>
+										    <label>Rate doctor</label>
+											<div class="stars">
+												<input type="radio" name="star" class="star-1" id="star-1" value="1" onClick="MyAlert(this.id)"/>
+												<label class="star-1" for="star-1">1</label>
+												<input type="radio" name="star" class="star-2" id="star-2" value="2" onClick="MyAlert(this.id)"/>
+												<label class="star-2" for="star-2">2</label>
+												<input type="radio" name="star" class="star-3" id="star-3" value="3" onClick="MyAlert(this.id)"/>
+												<label class="star-3" for="star-3">3</label>
+												<input type="radio" name="star" class="star-4" id="star-4" value="4" onClick="MyAlert(this.id)"/>
+												<label class="star-4" for="star-4">4</label>
+												<input type="radio" name="star" class="star-5" id="star-5" value="5" onClick="MyAlert(this.id)"/>
+												<label class="star-5" for="star-5">5</label>
+												<span></span>
+											</div>
+											<input type="hidden" id="ratingValue"/>
 										</div>
-										<div class="form-group">
-											<label>State</label> 
-											<select class="form-control" id="country" name="country"></select>
-											<label>District</label>
-											<select class="form-control" id="state" name="state"></select>
-											<script language="javascript">
-											  populateCountries("country", "state");
-											</script>
-										</div>
-
-										<div class="form-group">
-											<label>Mobile Phone:</label><input id="MobilePhone" type=tel class="form-control" placeholder="Mobile Phone no">
-										</div>		
-										<div class="form-group">
-											<label>E-mail:</label><input id="email" type=email class="form-control" placeholder="e-mail">
-										</div>												
-										<div class="form-group">
-										<label>About User</label>
-										<textarea class="form-control" type=text id="usrdet" rows="3"></textarea>
-										</div>
-                                        <button type="submit" id="saveUser" class="btn btn-success">Submit </button>
-                                        <button type="reset" id="reset" class="btn btn-danger">Reset </button>
-                                    </fieldset>
-								    </form>
-								  </div>
-                                </div>
+										<button type="submit" id="saveDoctorRating" class="btn btn-default">Save</button>
+									</form>
                                 <!-- /.col-lg-6 (nested) -->
-                            </div>
+								</div>
                             <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-					    <div id="success" class="alert alert-success" hidden=true>	
-						<strong>Successfully Registered</strong>
-					    </div>
-					  
-					    <div id="failure" class="alert alert-danger" hidden=true>	
-						<strong>Failed to Register</strong>
-					    </div>						
-                    </div>
-                    <!-- /.panel -->
-                </div>
+							</div>
+						<!-- /.panel body -->
+						</div>
+					<!-- /.panel -->
+					</div>	
                 <!-- /.col-lg-12 -->
-            </div>
+				</div>
             <!-- /.row -->
-        </div>
+			</div>
         <!-- /#page-wrapper -->
-
-    </div>
+		</div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -258,11 +215,9 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-	
-	<script src="../../node_modules/moment/min/moment.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/userRegistration.js"></script>
+    <script src="../dist/js/feedback.js"></script>
 	
 	    <!-- DataTables JavaScript -->
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
