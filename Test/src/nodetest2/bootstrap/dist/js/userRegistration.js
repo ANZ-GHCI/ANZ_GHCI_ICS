@@ -72,8 +72,7 @@ function populateTable() {
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + this.userType + '</td>';
-			tableContent += '<td>' + this.firstName + '</td>';
-			tableContent += '<td>' + this.lastName + '</td>';
+			tableContent += '<td>' + this.lastName +', '+this.firstName+'</td>';
 			tableContent += '<td>' + this.dob + '</td>';
 			tableContent += '<td>' + this.gender + '</td>';
 			tableContent += '<td>' + this.address + '</td>';
@@ -118,33 +117,30 @@ function showUserInfo(event) {
 // Add User
 function saveUser(event) {
     event.preventDefault();
-
-    // Super basic validation - increase errorCount variable if any fields are blank
-    var errorCount = 0;
-    $('#addUser input').each(function(index, val) {
-        if($(this).val() === '') { errorCount++; }
-    });
 	
-    // Check and make sure errorCount's still at zero
-    if(errorCount === 0) {
-
-        // If it is, compile all user info into one object
-        var newUser = {
-			'userType': $('#addUser fieldset #usrtype :selected').val(),
-			'firstName': $('#addUser fieldset input#firstName').val(),
-            'lastName': $('#addUser fieldset input#lastName').val(),
-            'dob': $('#addUser fieldset input#dob').val(),
-            'gender': $('#addUser fieldset input[name=gender]:checked').val(),
-			'address': $('#addUser fieldset textarea#address').val(),
-			'state': $('#addUser fieldset #country :selected').val(),
-			'district': $('#addUser fieldset #state :selected').val(),
-			'mobilePhone': $('#addUser fieldset input#MobilePhone').val(),
-			'email': $('#addUser fieldset input#email').val(),
-		    'usrdet': $('#addUser fieldset textarea#usrdet').val(),
-			'createdDate':new Date(),
-			'available':'Yes'
-		   
-         }
+	if(!$("#registrationForm")[0].checkValidity()){
+		return false;
+	}
+	var todaysDate = moment(new Date());
+	
+	var newUser = {
+		'userType': $('#addUser fieldset #usrtype :selected').val(),
+		'firstName': $('#addUser fieldset input#firstName').val(),
+		'lastName': $('#addUser fieldset input#lastName').val(),
+		'dob': $('#addUser fieldset input#dob').val(),
+		'gender': $('#addUser fieldset input[name=gender]:checked').val(),
+		'address': $('#addUser fieldset textarea#address').val(),
+		'state': $('#addUser fieldset #country :selected').val(),
+		'district': $('#addUser fieldset #state :selected').val(),
+		'mobilePhone': $('#addUser fieldset input#MobilePhone').val(),
+		'email': $('#addUser fieldset input#email').val(),
+		'usrdet': $('#addUser fieldset textarea#usrdet').val(),
+		'createdDate':todaysDate.format('D/M/YYYY'),
+		'updatedDate':todaysDate.format('D/M/YYYY'),
+		'password':'ICS@123',
+		'available':'Yes'
+	   
+	 };
 		// Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
@@ -152,30 +148,17 @@ function saveUser(event) {
             url: 'http://localhost:3000/users/adduser',
 			dataType: 'JSON'
         }).done(function( response ) {
-
             // Check for successful (blank) response
             if (response.msg === '') {
-
-                // Clear the form inputs
-                $('#addUser fieldset input').val('');
-				 $('#addUser fieldset textarea').val('');
-				$('#addUser fieldset input[type=radio]').attr('checked', false);
-				$('#addUser fieldset input[type=checkbox]').attr('checked', false);
-
+				$("[id=success]").attr('hidden', false);
             }
             else {
-
-                // If something goes wrong, alert the error message that our service returned
-                alert('Error: ' + response.msg);
-
+                $("[id=failure]").attr('hidden', false);
+				$("#reset").click();
             }
         });
-    }
-    else {
-        // If errorCount is more than 0, error out
-        alert('Please fill in all fields');
-        return false;
-    }
+    
+
 };
 // Delete User
 function deleteUser(event) {
@@ -193,9 +176,6 @@ function deleteUser(event) {
             type: 'DELETE',
             url: 'http://localhost:3000/users/deleteuser/'+$(this).attr('rel')
         }).done(function( response ) {
-			alert('response'+response);
-            // Check for a successful (blank) response
-			alert('searchUsers222');
             if (response.msg === '') {
             }
             else {
@@ -209,9 +189,6 @@ function deleteUser(event) {
 
     }
     else {
-
-        // If they said no to the confirm, do nothing
-		  alert('delete respo false');
         return false;
 
     }
@@ -235,13 +212,12 @@ function findUser(event) {
         dataType: "json",
 		data: user,
 		success: function(data) { 
-		  if(data != null && typeof data[0] != 'undefined'){
+		    if(data != null && typeof data[0] != 'undefined') {
 			
 			$.each(data, function(){
-            tableContent += '<tr>';
+			tableContent += '<tr>';
             tableContent += '<td>' + this.userType + '</td>';
-			tableContent += '<td>' + this.firstName + '</td>';
-			tableContent += '<td>' + this.lastName + '</td>';
+			tableContent += '<td>' + this.lastName +', '+this.firstName+'</td>';
 			tableContent += '<td>' + this.dob + '</td>';
 			tableContent += '<td>' + this.gender + '</td>';
 			tableContent += '<td>' + this.address + '</td>';
@@ -250,16 +226,16 @@ function findUser(event) {
             tableContent += '<td>' + this.usrdet+ '</a></td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
-        });
+			
+			});
 
         // Inject the whole content string into our existing HTML table
-        $('#userList table tbody').html(tableContent);    
+			$('#userList table tbody').html(tableContent);    
 			
-		} else {
-			alert('error data not found');
-			   }
-		
+		} else{
+				$('#userList table tbody').html(tableContent);
 		}
+	}
 		
 	});
 

@@ -68,7 +68,7 @@ function populateDoctors(doctorId) {
 
 function validatepatient(event) {
     event.preventDefault();
-	var patientid = $('#assignDoctor fieldset input#patientid').val();
+	var patientid = $('#patientid').val();
 	
 	if(patientid==''){	
     	alert('Please enter patient ID');
@@ -114,10 +114,10 @@ function assignDoctor(event) {
 			
             // Check for a successful (blank) response
             if (response.msg === '') {
-				alert('Assined patient');
+				$("[id=success]").attr('hidden', false);
 			}
             else {
-                alert('Error: ' + response.msg);
+                $("[id=failure]").attr('hidden', false);
             }
 
         });

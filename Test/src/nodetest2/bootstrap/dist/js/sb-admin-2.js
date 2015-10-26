@@ -1,48 +1,8 @@
-
-$(function() {
-	$(document).ready(function(){
-   	   // check login details button click
-	    $('#validateUser').on('click', loginapp); //Submit the form
-		
-   });
-});		
-				
 $(function() {
 
     $('#side-menu').metisMenu();
 
 });
-
-function loginapp(event) {
-    
-	if(!$("#loginform")[0].checkValidity()){  alert('validity check');
-		return false;
-	}
-	event.preventDefault();
-	
-        // If it is, compile all user info into one object
-        var credentials = {
-			'username': $('#login fieldset input#username').val(),
-			'password': $('#login fieldset input#password').val()
-         };
-        // Use AJAX to post the object to our adduser service
-        $.ajax({
-            type: 'POST',
-            data: credentials,
-            url: 'http://localhost:3000/users/login',
-			dataType: 'JSON',
-			success: function(data) {
-			alert(data.firstName);
-		    if(data != null) {
-				window.location="patientlist.html";
-            }
-            else {
-                // If something goes wrong, alert the error message that our service returned
-                alert('Please check the credentials');
-            }
-        }
-	});
- };
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
@@ -73,6 +33,4 @@ $(function() {
     if (element.is('li')) {
         element.addClass('active');
     }
-
 });
-

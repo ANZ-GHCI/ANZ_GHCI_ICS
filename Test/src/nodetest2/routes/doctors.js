@@ -66,9 +66,9 @@ router.delete('/deletedoctor/:id', function(req, res) {
 });
 
 /*
- * POST to addDoctorFeedback.
+ * POST to doctors Feedback.
  */
-router.post('/addDoctorFeedback', function(req, res) {
+router.post('/doctorsFeedback', function(req, res) {
     var db = req.db;
     var collection = db.get('feedbacklist');
     collection.insert(req.body, function(err, result){

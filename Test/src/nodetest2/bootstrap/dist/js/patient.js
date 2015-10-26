@@ -11,7 +11,9 @@ $(function() {
 			}	
 		});
 		$('#searchPatient').on('click', findPatient); //searchPatient
-
+		$('#clinicalInfo').on('click', function(event) {
+			window.location="clinicalExamination.html?patientid='"+ $('#patient_id').val() +"'";
+		}); //Navigate to clinical info
 	});
 });
 			
@@ -110,7 +112,7 @@ function findPatient(event) {
 			$('#occupation').val(thisUserObject.occupation);
 			$('#education').val(thisUserObject.education);
 			$('#religion').val(thisUserObject.religion);
-			$('#maritalStatus').val(thisUserObject.maritalStatus);
+			$('[name=maritalStatus]').val(thisUserObject.maritalStatus);
 			$('#noofChildren').val(thisUserObject.noofChildren);
 			
 			$("[name=smoke]").val([thisUserObject.smoke]);
@@ -152,7 +154,8 @@ function savePatient(event) {
         var newPatient = preparePatientJson();
 		var datestring = newPatient.dob.substring(8, 10)+newPatient.dob.substring(5, 7)+newPatient.dob.substring(0, 4);
 		newPatient.patient_id = newPatient.firstName.substring(0, 4)+newPatient.lastName.substring(0,1)+datestring;
-		
+		var todaysDate = moment(new Date());
+		newPatient.createdDate = todaysDate.format('D/M/YYYY');
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
@@ -164,16 +167,16 @@ function savePatient(event) {
 			// Check for successful (blank) response
             if (response.msg === '') {
 				$("[id=alertmsge]").attr('hidden', false);
-				$("[id=createdId]").val(newPatient.patient_id);
-				//$("#patientRegistrationForm")[0].reset();
-				
+				$("[id=patient_id]").val(newPatient.patient_id);
+				$("#reset").click();
             }
             else {
-                // If something goes wrong, alert the error message that our service returned
+			    // If something goes wrong, alert the error message that our service returned
                 alert('Error: ' + response.msg);
 
             }
         });
+
     
 };
 
@@ -181,11 +184,14 @@ function savePatient(event) {
 function updatePatient(event) {  
     event.preventDefault();
     // Pop up a confirmation dialog
-    
+	if(!$("#patientRegistrationForm")[0].checkValidity()){
+		return false;
+	}
     var patientDetails = preparePatientJson();	  
 	var datestring = patientDetails.dob.substring(8, 10)+patientDetails.dob.substring(5, 7)+patientDetails.dob.substring(0, 4);
 	patientDetails.patient_id = patientDetails.firstName.substring(0, 4)+patientDetails.lastName.substring(0,1)+datestring;	
-	alert('patient id : '+patientDetails.patient_id);
+	var todaysDate = moment(new Date());
+	patientDetails.updatedDate = todaysDate.format('D/M/YYYY');
 		
         $.ajax({
             type: 'PUT',
@@ -195,7 +201,9 @@ function updatePatient(event) {
 			
             // Check for a successful (blank) response
             if (response.msg === '') {
-				window.location="patient-registration.html";            
+				$("[id=alertmsge]").attr('hidden', false);
+				$("[id=patient_id]").val(patientDetails.patient_id);
+				$("#reset").click();          
 			}
             else {
                 alert('Error: ' + response.msg);
@@ -218,7 +226,7 @@ function preparePatientJson(){
             'occupation': $('#addPatient fieldset input#occupation').val(),
             'education': $('#addPatient fieldset input#education').val(),
             'religion': $('#addPatient fieldset input#religion').val(),
-            'maritalStatus': $('#addPatient fieldset input#maritalStatus').val(),
+            'maritalStatus': $('#addPatient fieldset input[name=maritalStatus]:checked').val(),
             'noofChildren': $('#addPatient fieldset input#noofChildren').val(),
 			
 			'smoke': $('#addPatient fieldset input[name=smoke]:checked').val(),

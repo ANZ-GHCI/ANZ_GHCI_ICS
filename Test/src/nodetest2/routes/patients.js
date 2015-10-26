@@ -87,9 +87,9 @@ router.get('/clinicalExamList', function(req, res) {
 
 
 /*
- * POST to addClinicalExam.
+ * POST to addClinicalDetails.
  */
-router.post('/addClinicalExam', function(req, res) {
+router.post('/addClinicalDetails', function(req, res) {
     var db = req.db;
     var collection = db.get('clinicalExamList');
     collection.insert(req.body, function(err, result){
@@ -109,8 +109,7 @@ router.get('/searchClinicalDetails/:id', function(req, res) {
 	var patientToFetch = req.params.id;
 	console.log('patientToFetch'+patientToFetch);
 	collection.findOne({"patient_id":patientToFetch},function(err,data) {
-		res.json(data);
-		//res.end('clinicalExamination.html');
+		res.json(data);		
     });
 });
 
@@ -123,8 +122,7 @@ router.put('/updateClinicalExam/:id', function(req, res) {
 	var clinicalExamData = req.body;
     var collection = db.get('clinicalExamList');
     var dataToUpdate = req.params.id;
-
-	collection.update({'patientid':dataToUpdate}, {"$set":clinicalExamData}, {safe:true}, function(err, result) {
+	collection.update({'patient_id':dataToUpdate}, {"$set":clinicalExamData}, {safe:true}, function(err, result) {
 	console.log(err);
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
