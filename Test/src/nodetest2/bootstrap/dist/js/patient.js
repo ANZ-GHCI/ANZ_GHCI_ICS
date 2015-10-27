@@ -172,6 +172,7 @@ function savePatient(event) {
             }
             else {
 			    // If something goes wrong, alert the error message that our service returned
+				$("[id=failureMsge]").attr('hidden', false);
                 alert('Error: ' + response.msg);
 
             }

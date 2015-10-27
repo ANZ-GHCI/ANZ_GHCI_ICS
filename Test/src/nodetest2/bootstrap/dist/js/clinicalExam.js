@@ -141,7 +141,7 @@ function mapPatientDetails(patientinfo) {
 function submitPatientDetails(event) {
     event.preventDefault();   
 	var clinicalDetails = prepareClinicalExamJson();
-    alert('clinicalDetails'+clinicalDetails);
+    
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
@@ -151,11 +151,14 @@ function submitPatientDetails(event) {
         }).done(function( response ) {
 
             if (response.msg === '') {
-				alert('Success');
-                //populateTable();
+				
+				$("[id=alertmsge]").attr('hidden', false);
+				$("[id=patientClinicalid]").val(clinicalDetails.patient_id);
+				$("#reset").click();
             }
             else {
                 // If something goes wrong, alert the error message that our service returned
+				$("[id=failureMsge]").attr('hidden', false);
                 alert('Error: ' + response.msg);
 
             }
@@ -166,7 +169,6 @@ function submitPatientDetails(event) {
 function updatePatientDetails(event) {
     event.preventDefault();   
 	var clinicalDetails = prepareClinicalExamJson();
-    alert('clinicalDetails'+clinicalDetails.CVSTxt);
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'PUT',
@@ -200,14 +202,11 @@ $.urlParam = function(name){
 }*/
 
 function fetchPatientClinicalDetails(event) {  
-	//event.preventDefault();
-	alert('fetch clinical'+$.urlParam('patientid'));
-	
-       $.ajax({
+	   $.ajax({
         type: "GET",
         url: "http://localhost:3000/patients/searchPatient/"+$.urlParam('patientid')
 		}).done(function( data ) {
-			alert(data); 
+			
 		  if(data != null) {
 			alert(data);
 			var thisUserObject = data;
