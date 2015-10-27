@@ -194,6 +194,11 @@ $.urlParam = function(name){
 	return results[1] || 0;
 }
 
+/*$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results;
+}*/
+
 function fetchPatientClinicalDetails(event) {  
 	//event.preventDefault();
 	alert('fetch clinical'+$.urlParam('patientid'));

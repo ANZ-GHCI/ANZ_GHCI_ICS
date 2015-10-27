@@ -25,6 +25,11 @@ $.urlParam = function(name){
 	return results[1] || 0;
 }
 
+/*$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results;
+}*/
+
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
