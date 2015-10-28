@@ -151,6 +151,7 @@ function saveUser(event) {
             // Check for successful (blank) response
             if (response.msg === '') {
 				$("[id=success]").attr('hidden', false);
+				$("#reset").click();
             }
             else {
                 $("[id=failure]").attr('hidden', false);
