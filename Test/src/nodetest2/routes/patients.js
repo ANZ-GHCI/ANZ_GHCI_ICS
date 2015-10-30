@@ -171,4 +171,32 @@ router.put('/assignDoctor', function(req, res) {
 
 });
 
+/*
+ * GET cancer analytics
+ */
+router.get('/analyticsArea', function(req, res) {
+	console.log('retrieve analytics list');
+    var db = req.db;
+	var collection = db.get('patientlist');
+    collection.aggregate( {
+							"$group" : {_id:"$area", count:{$sum:1}}
+						  } ,function(e,docs){
+        res.json(docs);
+    }); 
+	
+});
+
+/*
+ * GET cancer analytics
+ */
+router.get('/analyticsGender', function(req, res) {
+	console.log('retrieve gender wise analytics list');
+    var db = req.db;
+	var collection = db.get('patientlist');
+    collection.aggregate( {} ,function(e,docs){
+        res.json(docs);
+    }); 
+	
+});
+
 module.exports = router;

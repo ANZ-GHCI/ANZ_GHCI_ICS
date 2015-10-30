@@ -106,7 +106,11 @@ function findPatient(event) {
 			$('#dob').val(thisUserObject.dob);
 			$("[name=gender]").val([thisUserObject.gender]);
 			$('#address').val(thisUserObject.address);				
-			$('#homePhone').val(thisUserObject.homePhone);
+			$('#state').val(thisUserObject.state);	
+			var countryElement = document.getElementById('district');
+			countryElement.length=0;
+			countryElement.options[0] = new Option(thisUserObject.district,'-1');
+			countryElement.selectedIndex = 0;
 			$('#MobilePhone').val(thisUserObject.MobilePhone);
 			$('#income').val(thisUserObject.income);
 			$('#occupation').val(thisUserObject.occupation);
@@ -221,7 +225,8 @@ function preparePatientJson(){
             'dob': $('#addPatient fieldset input#dob').val(),
             'gender': $('#addPatient fieldset input[name=gender]:checked').val(),
 			'address': $('#addPatient fieldset textarea#address').val(),
-            'homePhone': $('#addPatient fieldset input#homePhone').val(),
+			'state': $('#addPatient fieldset #state :selected').val(),
+			'district': $('#addPatient fieldset #district :selected').val(),
             'MobilePhone': $('#addPatient fieldset input#MobilePhone').val(),
             'income': $('#addPatient fieldset input#income').val(),
             'occupation': $('#addPatient fieldset input#occupation').val(),

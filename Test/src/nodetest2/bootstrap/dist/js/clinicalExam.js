@@ -1,5 +1,3 @@
-
-
 $(function() {
 	
 	$(document).ready(function(){
@@ -62,7 +60,7 @@ $(function() {
 
 
 function showClinicalExamInfo(event, patientinfo) {
-	alert('URL : '+"http://localhost:3000/patients/searchClinicalDetails/"+$.urlParam('patientid'));
+	//alert('URL : '+"http://localhost:3000/patients/searchClinicalDetails/"+$.urlParam('patientid'));
 	//event.preventDefault();
 	// Prevent Link from Firing
    
@@ -70,7 +68,7 @@ function showClinicalExamInfo(event, patientinfo) {
 	type: "GET",
 	url: "http://localhost:3000/patients/searchClinicalDetails/"+$.urlParam('patientid')
 	}).done(function( data ) {
-			alert(data); 
+			
 		 if(data != null) {
 			mapPatientDetails(patientinfo);
 			var thisUserObject = data;
@@ -104,7 +102,37 @@ function showClinicalExamInfo(event, patientinfo) {
 			$('#ChildNumTxt').val(thisUserObject.ChildNumTxt);
 			$('#BreastFeedTxt').val(thisUserObject.BreastFeedTxt);
 			$('#BottleFeedTxt').val(thisUserObject.BottleFeedTxt);
-	
+			
+			$("[name=cycle]").val([thisUserObject.cycle]);
+			$("[name=discharge]").val([thisUserObject.discharge]);
+			$("[name=postMenopause]").val([thisUserObject.postMenopause]);
+			$("[name=postCoital]").val([thisUserObject.postCoital]);
+			$("[name=interMenstrual]").val([thisUserObject.interMenstrual]);
+			
+			$("[name=fpLoop]").val([thisUserObject.fpLoop]);
+			$("[name=fpPills]").val([thisUserObject.fpPills]);
+			$("[name=fpTubectomy]").val([thisUserObject.fpTubectomy]);
+			$("[name=fpVasectomy]").val([thisUserObject.fpVasectomy]);
+			$("[name=fpOthersTxt]").val([thisUserObject.fpOthersTxt]);
+			
+			$("[name=geHealth]").val([thisUserObject.geHealth]);
+			$("[name=geCervicitis]").val([thisUserObject.geCervicitis]);
+			$('#geBleedingTxt').val(thisUserObject.geBleedingTxt);
+			$('#geGrowthTxt').val(thisUserObject.geGrowthTxt);
+			$('#geAbnormalTxt').val(thisUserObject.geAbnormalTxt);
+			
+			$("[id=ecg]").val([thisUserObject.ecg]);
+			$("[id=chestXRay]").val([thisUserObject.chestXRay]);
+			$("[id=baSwallow]").val([thisUserObject.baSwallow]);
+			$("[id=fnac]").val([thisUserObject.fnac]);
+			$("[id=biopsy]").val([thisUserObject.biopsy]);
+			$("[id=papsmear]").val([thisUserObject.papsmear]);
+			$("[id=ecto]").val([thisUserObject.ecto]);
+			$("[id=endo]").val([thisUserObject.endo]);
+			$("[id=postFX]").val([thisUserObject.postFX]);
+			
+			$("[name=clinDiagnosis]").val([thisUserObject.clinDiagnosis]);
+				
 		} else{
 			mapPatientDetails(patientinfo);
 		}
@@ -112,7 +140,6 @@ function showClinicalExamInfo(event, patientinfo) {
 	});
 	
 };
-
 function mapPatientDetails(patientinfo) {
 		$('#patientid').val(patientinfo.patient_id); 
 	

@@ -42,7 +42,7 @@ s_a[33]	= "Agra|Aligarh|Allahabad|Ambedkar Nagar|Auraiya|Azamgarh|Badaun|Baghpat
 s_a[34]	= "Almora|Bageshwar|Chamoli|Champawat|Dehra Dun|Haridwar|Naini Tal|Pauri Garhwal|Pithoragarh|Rudra Prayag|Tehri Garhwal|Udham Singh Nagar|Uttarkashi"
 s_a[35]	= "Bankura|Barddhaman|Birbhum|Dakshin Dinajpur|Darjiling|East Midnapore|Haora|Hugli|Jalpaiguri|Kochbihar|Kolkata|Maldah|Murshidabad|Nadia|North 24 Parganas|Puruliya|South 24 Parganas|Uttar Dinajpur|West Midnapore";
 
-function populateStates( countryElementId, stateElementId ){
+function populateDistricts( countryElementId, stateElementId ){
 	
 	var selectedCountryIndex = document.getElementById( countryElementId ).selectedIndex;
 
@@ -59,7 +59,7 @@ function populateStates( countryElementId, stateElementId ){
 	}
 }
 
-function populateCountries(countryElementId, stateElementId){
+function populateStates(countryElementId, stateElementId){
 	// given the id of the <select> tag as function argument, it inserts <option> tags
 	var countryElement = document.getElementById(countryElementId);
 	countryElement.length=0;
@@ -73,7 +73,7 @@ function populateCountries(countryElementId, stateElementId){
 
 	if( stateElementId ){
 		countryElement.onchange = function(){
-			populateStates( countryElementId, stateElementId );
+			populateDistricts( countryElementId, stateElementId );
 		};
 	}
 }
