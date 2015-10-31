@@ -6,9 +6,6 @@ $(function() {
 
    	   // fetch patient list assigned to doctor
 		populatePatientTable();
-		
-		// patient reg no link click
-   	//  $('#fetchPatient').on('click', fetchPatientdet()); //Submit the form
 		 $('#listPatient table tbody').on('click', 'td a.linkClinicalInfo', fetchPatientdet);	
 	});
 });	
@@ -53,13 +50,9 @@ function populatePatientTable() {
 
 // fetchPatient details
 function fetchPatientdet(event) {  
-	alert('000'+ $(this).attr('rel'));
-	//fetching the patient id and passing to the next html
-	var patient_Id= $('#fetchPatient').attr('rel');
 	
-	//alert($('#fetchPatient').attr('rel'));
-    //event.preventDefault();
-		
+	var patient_Id= $('#fetchPatient').attr('rel');
+			
 	var patient = {'patient_id' : $(this).attr('rel')};
 
 	window.location="clinicalExamination.html?patientid='"+ $(this).attr('rel') +"'";
@@ -154,7 +147,7 @@ function showUserInfo(event) {
 };
 
 // Add User
-function addDoctor(event) {  alert('add doctor');
+function addDoctor(event) { 
     event.preventDefault();
 
     // Super basic validation - increase errorCount variable if any fields are blank
@@ -175,14 +168,14 @@ function addDoctor(event) {  alert('add doctor');
             'location': $('#addDoctor fieldset input#inputUserLocation').val(),
             'gender': $('#addDoctor fieldset input#inputUserGender').val()
         }
-		alert('newUser: '+newUser.username);
+		
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
             data: newUser,
             url: 'http://localhost:3000/doctors/adddoctor',
             dataType: 'JSON'
-        }).done(function( response ) {  alert('&&&&&&&&&&'+response.msg);
+        }).done(function( response ) {  
 
             // Check for successful (blank) response
             if (response.msg === '') {

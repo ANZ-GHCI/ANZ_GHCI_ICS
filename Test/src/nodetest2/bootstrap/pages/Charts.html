@@ -22,8 +22,15 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="canvasjs.min.js"></script>
-	</head>
+	<script type= "text/javascript" src="../dist/js/countries.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
 
 <body>
 
@@ -38,6 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+				
 				<img class="navbar-brand" src="../bower_components/bootstrap/dist/css/cancerlogo.jpg" style="width: 16%; height: 80%"/>
                 <a class="navbar-brand" href="index.html">ICS Towards Life</a>
             </div>
@@ -113,7 +121,8 @@
                                 </li>
                                 <li>
                                     <a href="clinicalExamination.html">Capture Images</a>
-                                </li>	
+                                </li>								
+ 
                             </ul>
 
                         </li>
@@ -128,10 +137,10 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
-		<br/>
-            <!-- /.row -->
-            <div class="row">
+
+
+        <div id="page-wrapper"><br>
+			<div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -139,11 +148,14 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
 								<div id="chartContainer1" style="height: 300px; width: 50%;"></div>
                                 </div>
-                                <div class="col-lg-6">
-								<div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+							<div class="row">
+                                <div class="col-lg-12">
+								<div id="chartContainer2" style="height: 500px; width: 50%;"></div>
                                 </div>								
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -155,7 +167,8 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+			<!------END--------->
+
         </div>
         <!-- /#page-wrapper -->
 
@@ -170,24 +183,28 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/charts.js"></script>
 	
-	
-	    <!-- DataTables JavaScript -->
+	<script src="../../node_modules/moment/min/moment.min.js"></script>
+
+    <!-- DataTables JavaScript -->
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+	<!-- Custom Theme JavaScript -->
+    <script src="../dist/js/patient.js"></script>
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	<script src="../dist/js/charts.js"></script> 	
 
     <!-- Page-Level Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+    $(document).ready(function() {  		
+		
+		$('#dataTables-example').DataTable({
                 responsive: true
         });
+
     });
     </script>
+
 </body>
 
 </html>

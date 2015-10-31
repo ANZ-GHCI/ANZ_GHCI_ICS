@@ -18,17 +18,17 @@ $(function() {
 
 });
 
-$.urlParam = function(name){
+$.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	results[1]=results[1].slice(3);
-	results[1]=results[1].replace("%27", "");
-	return results[1] || 0;
-}
+	
+	if(results != null){
+		results[1]=results[1].slice(3);
+		results[1]=results[1].replace("%27", "");
+		return results[1] || 0;		
+	 }
+	 return results;
 
-/*$.urlParam = function(name){
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results;
-}*/
+};
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
@@ -66,7 +66,7 @@ $(function() {
 function populateDoctors(doctorId) {  
 
 		$.getJSON( 'http://localhost:3000/users/doctorslist', function( data ) { 
-		alert('data :'+data);
+		
 		  if(data != null){
 					// given the id of the <select> tag as function argument, it inserts <option> tags
 					var doctorElement = document.getElementById(doctorId);

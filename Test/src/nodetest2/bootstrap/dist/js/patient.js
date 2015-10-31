@@ -94,7 +94,7 @@ function findPatient(event) {
         type: "GET",
         url: "http://localhost:3000/patients/searchPatient/"+$('#patientid').val()
 		}).done(function( data ) {
-		alert(data); 
+		
 		  if(data != null){
 			
 			var thisUserObject = data;
@@ -147,7 +147,7 @@ function findPatient(event) {
 
 // Add User
 function savePatient(event) {
-    alert('add');
+    
 	// Super basic validation - increase errorCount variable if any fields are blank
 	if(!$("#patientRegistrationForm")[0].checkValidity()){
 		return false;
@@ -167,7 +167,7 @@ function savePatient(event) {
             url: 'http://localhost:3000/patients/addpatient',
             dataType: 'JSON'
         }).done(function( response ) {  
-		  alert('response : '+response);
+		  
 			// Check for successful (blank) response
             if (response.msg === '') {
 				$("[id=alertmsge]").attr('hidden', false);
@@ -177,8 +177,7 @@ function savePatient(event) {
             else {
 			    // If something goes wrong, alert the error message that our service returned
 				$("[id=failureMsge]").attr('hidden', false);
-                alert('Error: ' + response.msg);
-
+                
             }
         });
 

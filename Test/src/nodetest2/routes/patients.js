@@ -175,14 +175,24 @@ router.put('/assignDoctor', function(req, res) {
  * GET cancer analytics
  */
 router.get('/analyticsArea', function(req, res) {
-	console.log('retrieve analytics list');
-    var db = req.db;
+	var db = req.db;
 	var collection = db.get('patientlist');
-    collection.aggregate( {
-							"$group" : {_id:"$area", count:{$sum:1}}
-						  } ,function(e,docs){
-        res.json(docs);
-    }); 
+
+	
+	collection.col.aggregate(
+		  [
+			  { "$group": {
+				  "_id": "$state",
+				  "count": { "$sum": 1 }
+			  }}
+		  ],
+		  function(err,docs) {
+			 if (err) console.log(err);
+			 console.log( docs );
+			 res.send(docs);
+		  }
+	  );	
+	
 	
 });
 
@@ -190,12 +200,49 @@ router.get('/analyticsArea', function(req, res) {
  * GET cancer analytics
  */
 router.get('/analyticsGender', function(req, res) {
-	console.log('retrieve gender wise analytics list');
-    var db = req.db;
+	var db = req.db;
 	var collection = db.get('patientlist');
-    collection.aggregate( {} ,function(e,docs){
-        res.json(docs);
-    }); 
+
+	
+	collection.col.aggregate(
+		  [
+			  { "$group": {
+				  "_id": "$gender",
+				  "count": { "$sum": 1 }
+			  }}
+		  ],
+		  function(err,docs) {
+			 if (err) console.log(err);
+			 console.log( docs );
+			 res.send(docs);
+		  }
+	  );	
+	
+	
+});
+
+/*
+ * GET cancer analytics
+ */
+router.get('/screendedAnalytics', function(req, res) {
+	var db = req.db;
+	var collection = db.get('patientlist');
+
+	
+	collection.col.aggregate(
+		  [
+			  { "$group": {
+				  "_id": "$gender",
+				  "count": { "$sum": 1 }
+			  }}
+		  ],
+		  function(err,docs) {
+			 if (err) console.log(err);
+			 console.log( docs );
+			 res.send(docs);
+		  }
+	  );	
+	
 	
 });
 

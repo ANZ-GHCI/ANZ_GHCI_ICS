@@ -60,9 +60,6 @@ $(function() {
 
 
 function showClinicalExamInfo(event, patientinfo) {
-	//alert('URL : '+"http://localhost:3000/patients/searchClinicalDetails/"+$.urlParam('patientid'));
-	//event.preventDefault();
-	// Prevent Link from Firing
    
 	 $.ajax({
 	type: "GET",
@@ -73,7 +70,6 @@ function showClinicalExamInfo(event, patientinfo) {
 			mapPatientDetails(patientinfo);
 			var thisUserObject = data;
 			
-			$('#patientClinicalid').val(thisUserObject.patient_id);
 			$('#CVSTxt').val(thisUserObject.CVSTxt);
 			$('#PulseTxt').val(thisUserObject.PulseTxt);
 			$('#BPTxt').val(thisUserObject.BPTxt);
@@ -142,7 +138,7 @@ function showClinicalExamInfo(event, patientinfo) {
 };
 function mapPatientDetails(patientinfo) {
 		$('#patientid').val(patientinfo.patient_id); 
-	
+		$('#patientClinicalid').val(patientinfo.patient_id);
 		$('#patientDetails fieldset input#firstName').val(patientinfo.lastName+', '+patientinfo.firstName);
 		$('#patientDetails fieldset input#dob').val(patientinfo.dob);
 		$('#patientDetails fieldset input#income').val(patientinfo.income);
@@ -168,6 +164,8 @@ function mapPatientDetails(patientinfo) {
 function submitPatientDetails(event) {
     event.preventDefault();   
 	var clinicalDetails = prepareClinicalExamJson();
+	var todaysDate = moment(new Date());
+	clinicalDetails.createdDate = todaysDate.format('D/M/YYYY');	
     
         // Use AJAX to post the object to our adduser service
         $.ajax({
@@ -186,9 +184,7 @@ function submitPatientDetails(event) {
             else {
                 // If something goes wrong, alert the error message that our service returned
 				$("[id=failureMsge]").attr('hidden', false);
-                alert('Error: ' + response.msg);
-
-            }
+			     }
         });
 
 };
@@ -196,6 +192,8 @@ function submitPatientDetails(event) {
 function updatePatientDetails(event) {
     event.preventDefault();   
 	var clinicalDetails = prepareClinicalExamJson();
+	var todaysDate = moment(new Date());
+	clinicalDetails.updatedDate = todaysDate.format('D/M/YYYY');	
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'PUT',
@@ -204,29 +202,30 @@ function updatePatientDetails(event) {
         }).done(function( response ) {
 
             if (response.msg === '') {
-				alert('Success');
-                //populateTable();
+				
+				$("[id=alertmsge]").attr('hidden', false);
+				$("[id=patientClinicalid]").val(clinicalDetails.patient_id);
+				$("#reset").click();
             }
             else {
                 // If something goes wrong, alert the error message that our service returned
-                alert('Error: ' + response.msg);
-
-            }
+				$("[id=failureMsge]").attr('hidden', false);
+			}
         });
 };
 
 		
-$.urlParam = function(name){
+$.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	results[1]=results[1].slice(3);
-	results[1]=results[1].replace("%27", "");
-	return results[1] || 0;
-}
+	
+	if(results != null){
+		results[1]=results[1].slice(3);
+		results[1]=results[1].replace("%27", "");
+		return results[1] || 0;		
+	 }
+	 return results;
 
-/*$.urlParam = function(name){
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results;
-}*/
+};
 
 function fetchPatientClinicalDetails(event) {  
 	   $.ajax({
@@ -235,7 +234,7 @@ function fetchPatientClinicalDetails(event) {
 		}).done(function( data ) {
 			
 		  if(data != null) {
-			alert(data);
+			
 			var thisUserObject = data;
 			showClinicalExamInfo(event, data);
 			}

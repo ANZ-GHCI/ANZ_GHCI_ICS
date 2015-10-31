@@ -77,6 +77,31 @@ router.post('/login', function(req,res) {
 	});
 });
 
+/*
+* reset user password
+*/
+router.put('/edituser/:id', function(req, res) {
+	
+    var db = req.db;
+	var user = req.body;
+    var collection = db.get('userlist');
+    var userToUpdate = req.params.id;
+	
+	collection.find({"email":userToUpdate, "sid":user.sid}, function(err, result) {
+		if(err){
+			res.send((err === null) ? { msg: '' } : { msg: err });
+		} else { 
+			collection.update({"email":userToUpdate}, {"$set":user}, {safe:true}, function(err, result) {
+				console.log(err);
+				res.send(
+					(err === null) ? { msg: '' } : { msg: err }
+				);
+			});	
+		}
+
+	});
+	
+});
 
 /*
 * search patient

@@ -138,7 +138,8 @@ function saveUser(event) {
 		'createdDate':todaysDate.format('D/M/YYYY'),
 		'updatedDate':todaysDate.format('D/M/YYYY'),
 		'password':'ICS@123',
-		'available':'Yes'
+		'available':'Yes',
+		'sid':$('#addUser fieldset input#SID').val()
 	   
 	 };
 		// Use AJAX to post the object to our adduser service
