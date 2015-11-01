@@ -3,12 +3,15 @@ var doctorListData = [];
 
 $(function() {
 	$(document).ready(function(){ 
-
+		
    	   // fetch patient list assigned to doctor
 		populatePatientTable();
-		 $('#listPatient table tbody').on('click', 'td a.linkClinicalInfo', fetchPatientdet);	
+		$("#userid").val($.urlParam('userid'));
+		// block free time on link click
+   	 $('#saveAppointment').on('click', saveAppointment); //Submit the form
+//		 $('#listPatient table tbody').on('click', 'td a.linkClinicalInfo', fetchPatientdet);	
 	});
-});
+});	
 
 $.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -277,3 +280,35 @@ function deleteDoctor(event) {
     }
 
 };
+// Save Appointment
+function saveAppointment(event)
+{
+event.preventDefault();
+	
+	        var details = {
+			'doctor_id': $('input#userid').val(),
+			'appDate': $('#doa').val(),
+			'stTime': $('#stTime').val(),
+			'enTime': $('#enTime').val(),
+			'patient_id' : ''
+			};
+		var todaysDate = moment(new Date());
+		details.createdDate = todaysDate.format('D/M/YYYY');
+	$.ajax({
+            type: 'POST',
+            url: 'http://104.197.53.84:3000/doctors/blockAppointment',
+			data: details
+        }).done(function( response ) {
+			
+            // Check for a successful (blank) response
+            if (response.msg === '') {
+				$("[id=success]").attr('hidden', false);
+			}
+            else {
+                $("[id=failure]").attr('hidden', false);
+            }
+
+        });
+}
+
+

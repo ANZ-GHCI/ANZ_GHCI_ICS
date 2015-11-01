@@ -8,6 +8,8 @@ $(function() {
 			$('#patientid').val($.urlParam('patientid'));
 		}
 		$('#validatepatient').on('click', validatepatient); //validate patientID
+		$('#doa').on('change',checkAvailability);
+		$('#availability').on('click', checkAvailability); //Submit the form	
 		$('#assign').on('click', assignDoctor); //Submit the form		
 	});
 });				
@@ -18,17 +20,13 @@ $(function() {
 
 });
 
-$.urlParam = function(name) {
+$.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	
-	if(results != null){		
-		if (window.location.href.indexOf("%") > -1) { 
-			results[1]=results[1].slice(3);
-			results[1]=results[1].replace("%27", "");
-					
-		}
-		return results[1] || 0;			
-	 }
+	if(results != null){
+	results[1]=results[1].slice(3);
+	results[1]=results[1].replace("%27", "");
+	return results[1] || 0;
+}
 	 return results;
 };
 
@@ -68,7 +66,6 @@ $(function() {
 function populateDoctors(doctorId) {  
 
 		$.getJSON( 'http://localhost:3000/users/doctorslist', function( data ) { 
-		
 		  if(data != null){
 					// given the id of the <select> tag as function argument, it inserts <option> tags
 					var doctorElement = document.getElementById(doctorId);
@@ -120,7 +117,10 @@ function assignDoctor(event) {
 	
 	        var details = {
 			'patient_id': $('#assignDoctor fieldset input#patientid').val(),
-			'email': $('#assignDoctor fieldset #doctor :selected').val()
+			'email': $('#assignDoctor fieldset #doctor :selected').val(),
+			'appDate': $('#doa').val(),
+			'stTime': $('#stTime').val(),
+			'enTime': $('#enTime').val(),
 			};
 
 	$.ajax({
@@ -137,5 +137,38 @@ function assignDoctor(event) {
                 $("[id=failure]").attr('hidden', false);
             }
 
+        });
+};
+
+function checkAvailability(event) {  
+    event.preventDefault();
+	
+	        var details = {
+			'patient_id': $('#assignDoctor fieldset input#patientid').val(),
+			'email': $('#assignDoctor fieldset #doctor :selected').val(),
+			'appDate': $('#doa').val()
+		};
+
+	$.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000/doctors/checkAppointment',
+			data: details
+        }).done(function( data ) {
+			 if(data != null){
+					// given the id of the <select> tag as function argument, it inserts <option> tags
+					var stTimeElement = document.getElementById('stTime');
+					var enTimeElement = document.getElementById('enTime');
+					stTimeElement.length=0;
+					stTimeElement.options[0] = new Option('Select Star Time','-1');
+					stTimeElement.selectedIndex = 0;
+					enTimeElement.length=0;
+					enTimeElement.options[0] = new Option('Select End Time','-1');
+					enTimeElement.selectedIndex = 0;
+					for (var i=0; i<data.length; i++) {
+						stTimeElement.options[stTimeElement.length] = new Option(data[i].stTime,data[i].stTime);
+						enTimeElement.options[enTimeElement.length] = new Option(data[i].enTime,data[i].enTime);
+					}					
+			}
+          
         });
 };

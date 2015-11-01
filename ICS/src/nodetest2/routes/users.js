@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 
 /*
  * GET userlist.
  */
 router.get('/userlist', function(req, res) {
-    var db = req.db;
+     var db = req.db;
     var collection = db.get('userlist');
     collection.find({},{},function(e,docs){
         res.json(docs);
@@ -70,12 +71,16 @@ router.post('/login', function(req,res) {
 	var collection = db.get('userlist');
 	var userToFind = req.body.username;
 	var passwordToMatch = req.body.password;
-	console.log('userToFind :::;; '+userToFind+"===="+passwordToMatch);
 	collection.findOne({"email":userToFind,"password":passwordToMatch},function(err,data) {
-		req.session.user = data;
+		console.log('req.session in req :::'+req.session);		
+		if(!err){		
+		session.user = data;
+		console.log('req.session.user ==========>'+session.user);
 		res.json(data);
+		}
 	});
 });
+
 
 /*
 * reset user password

@@ -108,11 +108,15 @@
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Screening<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="clinicalExamination.html">Clinical Examination</a>
+                                </li>
+                                <li>
                                     <a href="assigndoctor.html">Assign Doctor</a>
                                 </li>
                                 <li>
                                     <a href="capture.html">Capture Images</a>
-                                </li>	
+                                </li>								
+ 
                             </ul>
 
                         </li>
@@ -156,9 +160,19 @@
 											<label>Assign a Doctor </label> 
 											<select class="form-control" id="doctor" name="doctor"></select>
 										</div>
-
+										<div class="form-group">
+											<label>Date of Appointment:</label><input id="doa" type="date" placeholder="DD/MM/YY" required  class="form-control" placeholder="Date of Appointment">
+										</div>
+										<div class="form-group">
+											<label>Start Time :</label>
+											<select class="form-control" id="stTime" name="stTime"></select>
+										</div>
+										<div class="form-group">
+											<label>End Time :</label>
+											<select class="form-control" id="enTime" name="enTime"></select>
+										</div>
 										<button type="submit" id="assign" class="btn btn-default">Fix Appoinment</button>																						
-										
+										<button type="submit" id="availability" class="btn btn-default">View Availability</button>
                                   </fieldset>	
 								  </div>
                                 </div>

@@ -1,3 +1,4 @@
+
 $(function() {
 	$(document).ready(function(){
 		// on load login should be seen and password reset screen should be hidden

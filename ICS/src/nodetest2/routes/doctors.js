@@ -64,6 +64,33 @@ router.delete('/deletedoctor/:id', function(req, res) {
         res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
     });
 });
+/*
+ * Block availability bt Doctor.
+ */
+router.post('/blockappointment', function(req, res) {
+    var db = req.db;
+    var collection = db.get('appointment');
+	collection.insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+    });
+});
+/*
+ * Check availability bt Doctor.
+ */
+
+router.post('/checkAppointment', function(req, res) {
+    var db = req.db;
+    var collection = db.get('appointment');
+	var docEmail = req.body.email;
+	var appDate = req.body.appDate;
+	collection.find({'doctor_id':docEmail,'appDate':appDate},function(err,data) {
+		console.log(data);
+		res.json(data);		
+    });
+});
+
 
 /*
  * POST to doctors Feedback.

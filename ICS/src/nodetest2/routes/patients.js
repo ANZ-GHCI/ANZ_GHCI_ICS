@@ -12,7 +12,7 @@ router.get('/patientlist', function(req, res) {
     collection.find({},{},function(e,docs){
         res.json(docs);
     });
-});
+}); 
 
 /*
 * get patient list assigned to doctor
@@ -174,17 +174,22 @@ router.post('/updatepatientreg/:id', function(req, res) {
 router.put('/assignDoctor', function(req, res) {
     var db = req.db;
 	var patient = req.body;
-    var collection = db.get('patientlist');
+    var collection = db.get('appointment');
     var patientToUpdate = patient.patient_id;
+	var docEmail = patient.email;
+	var appDate = patient.appDate;
+	var stTime = patient.stTime;
+	var enTime = patient.enTime;
 	console.log('patientToUpdate ::::'+patientToUpdate);
-	collection.update({'patient_id':patientToUpdate}, {$set:{assignedDoctor:req.body.email}}, {safe:true}, function(err, result) {
+	console.log('doctor ::::'+docEmail);
+	collection.update({'doctor_id':docEmail,'appDate':appDate,'stTime':stTime,'enTime':enTime}, {$set:{patient_id:patientToUpdate}}, function(err, result) {
 	    res.send(
             (err === null) ? { msg: '' } : { msg: err }
         );
 	});
     
-
 });
+
 
 /*
  * GET cancer analytics
