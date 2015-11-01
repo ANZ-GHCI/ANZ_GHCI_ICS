@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<title>jQuery DateTimeInput Sample</title>
+<link rel="stylesheet" href="../../jqwidgets/styles/jqx.base.css" type="text/css"/>
+<script type="text/javascript" src="../../scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxdatetimeinput.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxcalendar.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxtooltip.js"></script>
+<script type="text/javascript" src="../../jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="../../jqwidgets/globalization/globalize.js"></script>
+ </head>
+<body>
+<div id='content'>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $("#jqxdatetimeinput").jqxDateTimeInput({ width: '250px', height: '25px' });
+          // init buttons.
+          $("#getDateButton").jqxButton();
+          $("#setDateButton").jqxButton();
+          // set new date.
+          $("#setDateButton").click(function () {
+              var date = new Date();
+              date.setFullYear(2012, 5, 6);
+              $('#jqxdatetimeinput').jqxDateTimeInput('setDate', date);
+          });
+          // get date.
+          $("#getDateButton").click(function () {
+              var date = $('#jqxdatetimeinput').jqxDateTimeInput('getDate');
+              alert(date);
+          });
+      });
+  </script>  
+  <div id='jqxdatetimeinput'></div>
+  <div style="margin-top: 10px;">
+    <input id="getDateButton" type="button" value="Get Date"/>
+    <input id="setDateButton" type="button" value="Set Date"/>
+  </div>
+</div>
+</body>
+</html> 
