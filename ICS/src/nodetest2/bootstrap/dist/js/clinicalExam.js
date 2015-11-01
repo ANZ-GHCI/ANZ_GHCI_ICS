@@ -16,6 +16,9 @@ $(function() {
 		$('#assignDoctor').on('click', function(event) {
 			window.location="assigndoctor.html?patientid='"+ $('#patientClinicalid').val() +"'";
 		});
+ 		$('#captureImage').on('click', function(event) {
+                        window.location="capture.html?patientid='"+ $('#patientClinicalid').val() +"'";
+                }); 
    	   
 	});
 });
