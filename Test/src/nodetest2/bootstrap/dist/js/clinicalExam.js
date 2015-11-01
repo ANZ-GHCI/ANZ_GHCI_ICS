@@ -1,7 +1,9 @@
 $(function() {
 	
 	$(document).ready(function(){
-	
+	$('#searchPatientClinical').on('click', function(event) {
+		window.location="clinicalExamination.html?patientid='"+ $('#patientid').val() +"'";	
+	});
 	$('#submitClinicalExam').on('click', function(event){	
 		if($('#patientClinicalid').val()!=''){	
 			updatePatientDetails(event);//Update patient
