@@ -1,4 +1,3 @@
-
 $(function() {
 	$(document).ready(function(){
 		// on load login should be seen and password reset screen should be hidden
@@ -14,6 +13,14 @@ $(function() {
 		$('#newPassword').on('click', newPasswordReset);		
    });
 });		
+
+// this is added since in cloud the second div for feedback is visible on form load and then collapses
+window.onload = function() {
+		$('#passwordreset').hide();
+		$('#invalidentry').hide();
+		$('#invalidlogin').hide();
+		$('#resetSuccess').hide();
+};
 				
 function resetPassword() {
 		$('#signin').hide();
@@ -87,7 +94,9 @@ function loginapp(event) {
 			   if(data.userType == "ICS Admin") { window.location="index.html"; }
 			   else if(data.userType == "ICS Staff") { window.location="index.html"; }
 			   else if(data.userType == "Volunteer") { window.location="patient-registration.html"; }
-			   else if(data.userType == "Doctor") { window.location="patientlist.html"; }
+			   else if(data.userType == "Doctor") { //window.location="patientlist.html";
+			     window.location="patientlist.html?assignedDoctor='"+ $('#login fieldset input#username').val() +"'";
+			   }
 			   } else {
 					// If something goes wrong, alert the error message that our service returned
 					$('#invalidlogin').show();

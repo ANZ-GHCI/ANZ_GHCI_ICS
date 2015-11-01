@@ -8,44 +8,78 @@ $(function() {
 		populatePatientTable();
 		 $('#listPatient table tbody').on('click', 'td a.linkClinicalInfo', fetchPatientdet);	
 	});
-});	
+});
 
-function populatePatientTable() {  
-    // Empty content string
-   // var tableContent = '';
-       var tableContent ="<table class='table table-striped table-hover '>";
-
-    // jQuery AJAX call for JSON
-    $.getJSON( 'http://localhost:3000/patients/patientlist', function( data ) { 
-		
-		    // Stick our user data array into a userlist variable in the global object
-    patientListData = data;
+$.urlParam = function(name) {
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	
-        // For each item in our JSON, add a table row and cells to the content string
-        $.each(data, function(){
-			
-				tableContent += "<tr class='warning'>";
-			
-           // tableContent += '<tr>';
-														
-			tableContent += '<td><a href="#" id="fetchPatient" class="linkClinicalInfo" rel="' + this.patient_id + '">' + this.patient_id + '</a></td>';											
-			tableContent += '<td>' + this.firstName + '</td>';
-			tableContent += '<td>' + this.lastName + '</td>';
-			tableContent += '<td>' + this.dob + '</td>';
-			tableContent += '<td>' + this.gender + '</td>';
-			tableContent += '<td>' + this.address + '</td>';
-			tableContent += '<td>' + this.MobilePhone + '</td>';
-            tableContent += '<td>' + this.email + '</td>';		
-            tableContent += '<td><a href="#" id="fetchPatient" class="linkClinicalInfo" rel="' + this.patient_id + '">' + this._id + '</a></td>';
-            tableContent += '</tr>';
-        });
-		
-        // Inject the whole content string into our existing HTML table
-       $('#listPatient table tbody').html(tableContent);
+	if(results != null){
+		if(results[1].indexOf('%37') != -1) {
+			results[1]=results[1].slice(3); 
+			results[1]=results[1].replace("%27", "");
+			return results[1] || 0;	
+		} else {  return results[1] || 0; }
+	 }
+	 return results;
 
-    });
 };
 
+function populatePatientTable() {  
+
+    // jQuery AJAX call for JSON
+	$.getJSON( 'http://localhost:3000/patients/patientlistdet/'+$.urlParam('assignedDoctor'), function( data ) { 
+		
+		// Stick our user data array into a userlist variable in the global object
+		var patientListData = data; 
+		
+     	//foreach(h=0;h<patientListData.length;h++){}
+	     var i=0; var tot = patientListData.length; var j = (tot - (tot % 5)) / 5; var k =5; var num=0;
+				
+				table(num,k,i);
+
+				if(tot!=0) {
+				function table(num,k,i) {
+
+					var	tableContent ="<table class='table table-striped table-hover panel-body'>";
+						tableContent +="<div id='content'>"
+			
+					while (i < k && i < tot) {
+				
+						tableContent += "<tr class='warning'>";			
+																
+						tableContent += '<td><a href="#" id="fetchPatient" class="linkClinicalInfo" rel="' + patientListData[i].patient_id + '">' + patientListData[i].patient_id + '</a></td>';											
+						tableContent += '<td>' + patientListData[i].firstName + '</td>';
+						tableContent += '<td>' + patientListData[i].lastName + '</td>';
+						tableContent += '<td>' + patientListData[i].dob + '</td>';
+						tableContent += '<td>' + patientListData[i].gender + '</td>';
+						tableContent += '<td>' + patientListData[i].address + '</td>';
+						tableContent += '<td>' + patientListData[i].MobilePhone + '</td>';
+						tableContent += '<td>' + patientListData[i].email + '</td>';		
+						tableContent += '<td><a href="#" id="fetchPatient" class="linkClinicalInfo" rel="' + patientListData[i].patient_id + '">' + patientListData[i].patient_id + '</a></td>';
+						tableContent += '</tr>';  
+						i = i+1;
+					}
+				
+					tableContent += "</div>";
+					// Inject the whole content string into our existing HTML table
+					$('#listPatient table tbody').html(tableContent);
+				}
+				
+				   // call to paginator function
+					$('#page-selection').bootpag({
+						total: (j+1)
+						//page: (j+1)
+					}).on("page", function(event, num){											
+											
+							alert('num'+num);
+							k= 5*num ; i=(5*num)-5;
+							//alert('num:'+num+' K:'+k+' J:'+j);
+							if(i < tot) { table(num,k,i); }
+					 //$("#ListPatient table tbody").html(tableContent); 
+					});	
+				} else { alert('No patients assigned ...'); }
+	});
+}; 
 
 
 // fetchPatient details

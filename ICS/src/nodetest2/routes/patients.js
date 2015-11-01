@@ -15,6 +15,21 @@ router.get('/patientlist', function(req, res) {
 });
 
 /*
+* get patient list assigned to doctor
+*/
+router.get('/patientlistdet/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('patientlist');
+	var patientToFetch = req.params.id;
+	console.log('patientToFetch'+patientToFetch);
+	//collection.findOne({"assignedDoctor":patientToFetch},function(err,data) {
+	collection.find({"assignedDoctor":patientToFetch},function(err,data) {
+		res.json(data);		
+    });
+});
+
+
+/*
 * search patient
 */
 router.get('/searchPatient/:id', function(req, res) {
