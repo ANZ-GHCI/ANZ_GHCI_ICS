@@ -71,13 +71,15 @@ function populatePatientTable() {
 						//page: (j+1)
 					}).on("page", function(event, num){											
 											
-							alert('num'+num);
+							//alert('num'+num);
 							k= 5*num ; i=(5*num)-5;
 							//alert('num:'+num+' K:'+k+' J:'+j);
 							if(i < tot) { table(num,k,i); }
 					 //$("#ListPatient table tbody").html(tableContent); 
 					});	
-				} else { alert('No patients assigned ...'); }
+				} else { 
+				   //alert('No patients assigned ...'); 
+				}
 	});
 }; 
 

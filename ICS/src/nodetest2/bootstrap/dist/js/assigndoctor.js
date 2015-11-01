@@ -25,8 +25,9 @@ $.urlParam = function(name) {
 		if (window.location.href.indexOf("%") > -1) { 
 			results[1]=results[1].slice(3);
 			results[1]=results[1].replace("%27", "");
-			return results[1] || 0;			
-		}				
+					
+		}
+		return results[1] || 0;			
 	 }
 	 return results;
 };
