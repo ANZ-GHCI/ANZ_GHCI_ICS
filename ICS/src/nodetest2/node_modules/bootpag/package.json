@@ -1,0 +1,56 @@
+{
+  "name": "bootpag",
+  "title": "Bootpag",
+  "description": "bootpag - dynamic pagination jQuery plugin. Works well with bootstrap or standalone.",
+  "keywords": [
+    "pagination",
+    "bootstrap",
+    "jquery-plugin",
+    "ecosystem:jquery"
+  ],
+  "version": "1.0.7",
+  "author": {
+    "name": "Botmonster",
+    "url": "http://blog.botmonster.com"
+  },
+  "maintainers": [
+    {
+      "name": "botmonster",
+      "email": "botmonster@7items.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/botmonster/jquery-bootpag/blob/master/LICENSE.txt"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/botmonster/jquery-bootpag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/botmonster/jquery-bootpag/issues"
+  },
+  "homepage": "http://botmonster.github.com/jquery-bootpag",
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "gitHead": "65ef9f5013aee3f68b8157c52e383983d3958730",
+  "_id": "bootpag@1.0.7",
+  "scripts": {},
+  "_shasum": "f16c3ae224564aaed158538954a6ab611b8c01cd",
+  "_from": "bootpag@*",
+  "_npmVersion": "2.5.1",
+  "_nodeVersion": "0.12.0",
+  "_npmUser": {
+    "name": "botmonster",
+    "email": "botmonster@7items.com"
+  },
+  "dist": {
+    "shasum": "f16c3ae224564aaed158538954a6ab611b8c01cd",
+    "tarball": "http://registry.npmjs.org/bootpag/-/bootpag-1.0.7.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/bootpag/-/bootpag-1.0.7.tgz"
+}
