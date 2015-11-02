@@ -17,11 +17,16 @@ $.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	
 	if(results != null){
-		if(results[1].indexOf('%27') != -1) {
-			results[1]=results[1].slice(3); 
-			results[1]=results[1].replace("%27", "");
+
+		if(results[1].indexOf('%27') != -1) { // to check for special characters
+			results[1]=results[1].slice(3); alert(results[1]);
+			results[1]=results[1].replace("%27", ""); //alert(results[1]);
 			return results[1] || 0;	
-		} else {  return results[1] || 0; }
+		} else {  //to check for single quotes on certain browsers
+			results[1]=results[1].replace(/'/g,""); //alert(results[1]);
+			return results[1] || 0;	
+		}
+		
 	 }
 	 return results;
 
