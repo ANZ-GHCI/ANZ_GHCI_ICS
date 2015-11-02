@@ -17,7 +17,7 @@ $.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	
 	if(results != null){
-		if(results[1].indexOf('%37') != -1) {
+		if(results[1].indexOf('%27') != -1) {
 			results[1]=results[1].slice(3); 
 			results[1]=results[1].replace("%27", "");
 			return results[1] || 0;	
