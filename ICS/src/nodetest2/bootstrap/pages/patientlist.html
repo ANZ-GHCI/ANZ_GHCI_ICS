@@ -80,14 +80,7 @@
         <div class="sidebar-nav navbar-collapse">
 			                    <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+						<img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 50%; height: 35%"/>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -95,7 +88,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Analytics<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu1">
                                 <li>
                                     <a href="Charts.html">Charts</a>
                                 </li>
@@ -103,11 +96,11 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="userslist.html"><i class="fa fa-table fa-fw"></i> List</a>
+                            <a href="userslist.html"><i class="fa fa-table fa-fw"></i> User Details</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Registration<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu2">
                                 <li>
                                     <a href="user-registration.html">User Registration</a>
                                 </li>
@@ -120,7 +113,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Screening<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu3">
                                 <li>
                                     <a href="clinicalExamination.html">Clinical Examination</a>
                                 </li>
@@ -128,7 +121,7 @@
                                     <a href="assigndoctor.html">Assign Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="capture.html">Capture Images</a>
+                                    <a href="doctors.html">Doctor Availability</a>
                                 </li>								
  
                             </ul>
@@ -224,20 +217,12 @@
 	<script type="text/javascript" src="../dist/js/pagination.js"></script>  -->
 	    <script src="../dist/js/patient.js"></script>
 		<script src="../dist/js/doctors.js"></script>
+		<script src="../dist/js/common.js"></script>
 
     <!-- for pagination -->
 	 <script type="text/javascript" src="../../node_modules/bootpag/lib/jquery.bootpag.js"></script>
 	<!-- for pagination end here -->
 	
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
-
 </body>
 
 </html>

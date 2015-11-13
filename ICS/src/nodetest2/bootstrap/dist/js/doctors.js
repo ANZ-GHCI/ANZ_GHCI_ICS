@@ -16,14 +16,10 @@ $(function() {
 $.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	
-	if(results != null){
-		if(results[1].indexOf('%37') != -1) {
-			results[1]=results[1].slice(3); 
-			results[1]=results[1].replace("%27", "");
-			return results[1] || 0;	
-		} else {  return results[1] || 0; }
+	if(results != null) {  	
+		return results[1];	
 	 }
-	 return results;
+	 
 
 };
 
@@ -32,13 +28,17 @@ function populatePatientTable() {
     // jQuery AJAX call for JSON
 	$.getJSON( 'http://localhost:3000/patients/patientlistdet/'+$.urlParam('assignedDoctor'), function( data ) { 
 		
+	if (data.msg =='expired')
+		window.location = "login.html";
+	else
+	{
 		// Stick our user data array into a userlist variable in the global object
 		var patientListData = data; 
 		
      	//foreach(h=0;h<patientListData.length;h++){}
 	     var i=0; var tot = patientListData.length; var j = (tot - (tot % 5)) / 5; var k =5; var num=0;
 				
-				table(num,k,i);
+			//	table(num,k,i);
 
 				if(tot!=0) {
 				function table(num,k,i) {
@@ -66,7 +66,9 @@ function populatePatientTable() {
 					tableContent += "</div>";
 					// Inject the whole content string into our existing HTML table
 					$('#listPatient table tbody').html(tableContent);
+					return;
 				}
+				   table(num,k,i); //call to function table defined above for the first time
 				
 				   // call to paginator function
 					$('#page-selection').bootpag({
@@ -83,6 +85,7 @@ function populatePatientTable() {
 				} else { 
 				   //alert('No patients assigned ...'); 
 				}
+	}
 	});
 }; 
 

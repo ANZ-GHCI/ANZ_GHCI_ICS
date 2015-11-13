@@ -12,7 +12,7 @@ $(function() {
 		});
 		$('#searchPatient').on('click', findPatient); //searchPatient
 		$('#clinicalInfo').on('click', function(event) {
-			window.location="clinicalExamination.html?patientid='"+ $('#patient_id').val() +"'";
+			window.location="clinicalExamination.html?patientid="+ $('#patient_id').val();
 		}); //Navigate to clinical info
 	});
 });
@@ -150,6 +150,7 @@ function savePatient(event) {
     
 	// Super basic validation - increase errorCount variable if any fields are blank
 	if(!$("#patientRegistrationForm")[0].checkValidity()){
+		
 		return false;
 	}
 	event.preventDefault();

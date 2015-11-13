@@ -75,14 +75,7 @@
         <div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+						<img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 50%; height: 35%"/>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -90,7 +83,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Analytics<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu1">
                                 <li>
                                     <a href="Charts.html">Charts</a>
                                 </li>
@@ -98,11 +91,11 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="userslist.html"><i class="fa fa-table fa-fw"></i> List</a>
+                            <a href="userslist.html"><i class="fa fa-table fa-fw"></i> User Details</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Registration<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu2">
                                 <li>
                                     <a href="user-registration.html">User Registration</a>
                                 </li>
@@ -115,8 +108,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Screening<span class="fa arrow"></span></a>
-
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu3">
                                 <li>
                                     <a href="clinicalExamination.html">Clinical Examination</a>
                                 </li>
@@ -124,7 +116,7 @@
                                     <a href="assigndoctor.html">Assign Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="capture.html">Capture Images</a>
+                                    <a href="doctors.html">Doctor Availability</a>
                                 </li>								
  
                             </ul>
@@ -146,7 +138,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-9">
-                    <h2 class="page-header"><img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 10%; height: 5%"/>Patient Registration</h2>
+                    <h2 class="page-header">Patient Registration</h2>
                 </div>
                 <div class="col-lg-3">			
 							<div class="input-group custom-search-form">
@@ -390,7 +382,7 @@
                         <!-- .panel-body -->
                     </div>
 					<div class="alert alert-success" id="alertmsge" hidden="true">
-						 Saved Successfully. Patient ID: <span><input type="text" id="patient_id" /> </span>
+						 Saved Successfully. Patient ID:<input type="text" id="patient_id" />
 						 <button type="button" id="clinicalInfo" class="btn btn-success">Clinical Information</button>
 					</div>
 					<div class="alert alert-danger" id="failureMsge" hidden="true">
@@ -426,6 +418,7 @@
 	<!-- Custom Theme JavaScript -->
     <script src="../dist/js/patient.js"></script>
 	<script src="../dist/js/clinicalExam.js"></script>  
+	<script src="../dist/js/common.js"></script>	
 
     <!-- Page-Level Scripts - Tables - Use for reference -->
     <script>

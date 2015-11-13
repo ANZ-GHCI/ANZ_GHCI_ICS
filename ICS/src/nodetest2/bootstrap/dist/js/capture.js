@@ -14,7 +14,7 @@ $(function() {
 
 });
 
-var uploadServiceURL = 'http://104.197.53.84:3000/captures/upload/';
+var uploadServiceURL = 'http://localhost:3000/captures/upload/';
 var photoURL;
 
 	function onAfterPhotoCapture(event){
@@ -85,7 +85,7 @@ var photoURL;
 		identifier = window.location.search.split("patientid=")[1];
 		$.ajax({
         type: "GET",
-        url: "http://104.197.53.84:3000/captures/searchCapture/" + identifier
+        url: "http://localhost:3000/captures/searchCapture/" + identifier
 		}).done(function( data ) {
 			console.log(data); 
 		  if(data != null){

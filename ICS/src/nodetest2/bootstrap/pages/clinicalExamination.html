@@ -75,14 +75,7 @@
         <div class="sidebar-nav navbar-collapse">
 			                    <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+						<img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 50%; height: 35%"/>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -90,7 +83,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Analytics<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu1">
                                 <li>
                                     <a href="Charts.html">Charts</a>
                                 </li>
@@ -102,7 +95,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Registration<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu2">
                                 <li>
                                     <a href="user-registration.html">User Registration</a>
                                 </li>
@@ -115,7 +108,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Screening<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu3">
                                 <li>
                                     <a href="clinicalExamination.html">Clinical Examination</a>
                                 </li>
@@ -123,7 +116,7 @@
                                     <a href="assigndoctor.html">Assign Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="capture.html">Capture Images</a>
+                                    <a href="doctors.html">Doctor Availability</a>
                                 </li>								
  
                             </ul>
@@ -132,7 +125,6 @@
                         <li>
                             <a href="feedback.html"><i class="fa fa-table fa-fw"></i> Feedback</a>
                         </li>
-                        
                     </ul>			
 			</div>
                 <!-- /.sidebar-collapse -->
@@ -142,7 +134,7 @@
         <div id="page-wrapper">
 		    <div class="row">
                 <div class="col-lg-9">
-                    <h2 class="page-header"><img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 10%; height: 5%"/>Patient Details</h2>
+                    <h2 class="page-header">Patient Details</h2>
 					
                 </div>
                 <div class="col-lg-3">			
@@ -764,7 +756,6 @@
 					<button type="reset" id="reset" class="btn btn-danger">Reset</button>
 					<button type="button" id="assignDoctor" class="btn btn-success">Assign Doctor</button>	
 					<button type="button" id="captureImage" class="btn btn-success">Capture Image</button>			
-					
 				</div>
 			
             </div>
@@ -789,13 +780,12 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-	
 	<script src="../../node_modules/moment/min/moment.min.js"></script>	
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/clinicalExam.js"></script>
 	<script src="../dist/js/doctors.js"></script>
-
+	<script src="../dist/js/common.js"></script>
 </body>
 
 </html>

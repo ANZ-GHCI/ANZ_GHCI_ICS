@@ -1,4 +1,5 @@
 var express = require('express');
+ var formidable = require('formidable')
 var router = express.Router();
 var fs = require('fs'); 
 
@@ -10,10 +11,29 @@ router.get('/capturelist', function(req, res) {
     });
 });
 router.post('/upload', function(req, res) {
-	
 	//console.log(req.files.image.originalFilename);
-    console.log(req.params.file);
-	fs.readFile(req.files.image.path, function (err, data){
+    console.log('upload serv' +req.body);
+	console.log('req.url' +req.body);
+	console.log('req.url' +req.method);
+	console.log('err' +err.message);
+	if (req.url == '/upload' && req.method.toLowerCase() == 'post')
+	{
+		var form = new formidable.IncomingForm();
+	}
+	form.parse(req, function(err, fields, files) {
+        if (err) {
+          // Check for and handle any errors here.
+          console.error(err.message);
+          return;
+        }
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.write('received upload:\n\n');
+	
+        // This last line responds to the form submission with a list of the parsed data and files.
+
+        res.end(util.inspect({fields: fields, files: files}));
+      });
+/*      fs.readFile(req.files.image.path, function (err, data){
         var dirname = "/public/fileuploads";
         var newPath = dirname + "/uploads/" +   req.files.image.originalFilename;
         fs.writeFile(newPath, data, function (err) {
@@ -22,7 +42,16 @@ router.post('/upload', function(req, res) {
 			}else {
 				res.json({'response':"Saved"});
 			}
+    var db = req.db;
 		});
+        });*/
+        var db = req.db;
+        var collection = db.get('capturelist');
+
+        collection.insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { msg: req.body } : { msg: err }
+        );
 	});
 });
 
@@ -36,11 +65,12 @@ router.get('/searchCapture/:id', function(req, res) {
     });
 });
 
-router.get('/upload/:file', function (req, res){
-        file = req.params.file;
-		console.log('file' + file);
+router.get('/upload', function (req, res){
+//        file = req.params.fille;
+console.log('file get upload : ' + req.body);
         var dirname = "/public/fileuploads";
-        var img = fs.readFileSync(dirname + "/uploads/" + file);
+//        var img = fs.readFileSync(dirname + "/uploads/" + file);
+        var img = req.data;
         res.writeHead(200, {'Content-Type': 'image/png' });
         res.end(img, 'base64');
  });
@@ -94,4 +124,3 @@ router.put('/updatecapture/:id', function(req, res) {
 });
 
 module.exports = router;
-

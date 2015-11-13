@@ -2,7 +2,7 @@ $(function() {
 	
 	$(document).ready(function(){
 	$('#searchPatientClinical').on('click', function(event) {
-		window.location="clinicalExamination.html?patientid='"+ $('#patientid').val() +"'";	
+		window.location="clinicalExamination.html?patientid="+ $('#patientid').val();	
 	});
 	$('#submitClinicalExam').on('click', function(event){	
 		if($('#patientClinicalid').val()!=''){	
@@ -14,10 +14,10 @@ $(function() {
 		$('#subHeadings').collapse();
 		fetchPatientClinicalDetails();
 		$('#assignDoctor').on('click', function(event) {
-			window.location="assigndoctor.html?patientid='"+ $('#patientClinicalid').val() +"'";
+			window.location="assigndoctor.html?patientid="+ $('#patientClinicalid').val();
 		});
  		$('#captureImage').on('click', function(event) {
-                        window.location="capture.html?patientid='"+ $('#patientClinicalid').val() +"'";
+			window.location="capture.html?patientid="+ $('#patientClinicalid').val();
                 }); 
    	   
 	});
@@ -222,15 +222,10 @@ function updatePatientDetails(event) {
 		
 $.urlParam = function(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	
 	if(results != null){		
-		if (window.location.href.indexOf("%") > -1) { 
-			results[1]=results[1].slice(3);
-			results[1]=results[1].replace("%27", "");					
+		return results[1];	
 		}
-		return results[1] || 0;			
-	 }
-	 return results;
+	 
 };
 
 function fetchPatientClinicalDetails(event) {  

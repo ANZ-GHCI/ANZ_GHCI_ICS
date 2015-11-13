@@ -72,10 +72,8 @@ router.post('/login', function(req,res) {
 	var userToFind = req.body.username;
 	var passwordToMatch = req.body.password;
 	collection.findOne({"email":userToFind,"password":passwordToMatch},function(err,data) {
-		console.log('req.session in req :::'+req.session);		
 		if(!err){		
 		session.user = data;
-		console.log('req.session.user ==========>'+session.user);
 		res.json(data);
 		}
 	});
@@ -144,7 +142,5 @@ router.get('/doctorslist', function(req, res) {
         res.json(docs);
     }); 
 });
-
-
 
 module.exports = router;

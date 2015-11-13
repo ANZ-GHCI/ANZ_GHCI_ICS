@@ -92,11 +92,15 @@ function loginapp(event) {
 			dataType: 'JSON',
 			success: function(data) {
 			   if(data != null) {
+				if(typeof(Storage) !== "undefined") {
+				
+				sessionStorage.setItem('usertype', data.userType);
+				}
 			   if(data.userType == "ICS Admin") { window.location="index.html"; }
 			   else if(data.userType == "ICS Staff") { window.location="index.html"; }
 			   else if(data.userType == "Volunteer") { window.location="patient-registration.html"; }
 			   else if(data.userType == "Doctor") { //window.location="patientlist.html";
-			     window.location="patientlist.html?assignedDoctor='"+ $('#login fieldset input#username').val() +"'";
+						 window.location="patientlist.html?assignedDoctor="+ $('#login fieldset input#username').val();
 			   }
 			   } else {
 					// If something goes wrong, alert the error message that our service returned

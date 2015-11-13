@@ -79,14 +79,7 @@
         <div class="sidebar-nav navbar-collapse">
 			                    <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+						<img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 50%; height: 35%"/>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -94,7 +87,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Analytics<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu1">
                                 <li>
                                     <a href="Charts.html">Charts</a>
                                 </li>
@@ -106,7 +99,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Registration<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu2">
                                 <li>
                                     <a href="user-registration.html">User Registration</a>
                                 </li>
@@ -119,7 +112,7 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Screening<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level" id="menu3">
                                 <li>
                                     <a href="clinicalExamination.html">Clinical Examination</a>
                                 </li>
@@ -127,7 +120,7 @@
                                     <a href="assigndoctor.html">Assign Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="capture.html">Capture Images</a>
+                                    <a href="doctors.html">Doctor Availability</a>
                                 </li>								
  
                             </ul>
@@ -147,7 +140,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header"><img class="icon-bar" src="../bower_components/bootstrap/dist/css/ICSLogo.png" style="width: 10%; height: 5%"/>User Registration Information</h2>
+                    <h2 class="page-header">User Registration Information</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -177,7 +170,7 @@
 
                                         <div class="form-group">
                                             <label>Fisrt Name </label>
-                                            <input id="firstName" type=text name=firstname class="form-control" placeholder="Enter Name">
+                                            <input id="firstName" type=text title="please enter First name" class="form-control" placeholder="Enter Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name </label>
@@ -268,15 +261,17 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/userRegistration.js"></script>
+	<!-- <script src="../dist/js/common.js"></script> -->
 	
 	    <!-- DataTables JavaScript -->
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
+	<script src="../dist/js/common.js"></script>
 
     <!-- Page-Level Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
+		
         $('#dataTables-example').DataTable({
                 responsive: true
         });
