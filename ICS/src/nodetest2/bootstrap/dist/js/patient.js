@@ -133,12 +133,14 @@ function findPatient(event) {
 			$("[id=cancer]").val([thisUserObject.cancer]);
 			$("[id=others]").val([thisUserObject.others]);
 		    
+			 $('#firstName').attr("disabled", true);
+			 $('#lastName').attr("disabled", true);
+			 $('#dob').attr("disabled", true);
 			
 		} else{
 		
 			alert('error data not found');
 		}	
-		
 		
 });
 
