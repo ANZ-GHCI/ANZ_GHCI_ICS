@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 
 
 /*
@@ -119,13 +120,20 @@ router.get('/feedbacklist', function(req, res) {
 /*
 * search doctor feedback
 */
-router.get('/searchDoctorFeedback', function(req, res) {
+router.get('/searchDoctorFeedback/:id', function(req, res) { 
     var db = req.db;
     var collection = db.get('feedbacklist');
-	var dataToFetch = req.body.doctorId;
-    collection.find({},function(err,data){
-        res.json(data);
+	var feedbackToFetch = req.params.id;
+	//console.log('feedbackToFetch'+feedbackToFetch);
+	if (session!='null' && session.msg){
+		res.json({msg:'expired'});
+	} else	{
+	//console.log('session.user from Patient list' + session.user);
+	//collection.findOne({"assignedDoctor":feedbackToFetch},function(err,data) {
+	collection.find({"doctorId":feedbackToFetch},function(err,data) { console.log(data);
+		res.json(data);		
     });
+	}
 });
 
 /*
