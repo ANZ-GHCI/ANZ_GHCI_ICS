@@ -2,22 +2,22 @@ var userListData = [];
 
 $(function() {
 	$(document).ready(function(){  
-   	   // Save User button click
-	    $('#saveUser').on('click', saveUser); //Submit the form		
+   		 // Save User button click
+	    	$('#saveUser').on('click', saveUser); //Submit the form		
 		$('#reset').on('click', resetFields); //Reset the form		
 		$('#searchUsers').on('change', findUser); //Populate the table data		
-        $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);		
-		});
+        	$('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);		
+	});
 });
 
 function resetFields(event) {
 
-    event.preventDefault();
+    	event.preventDefault();
 	$('#addUser fieldset input').val('');
 	$('#addUser fieldset textarea').val('');
 	$('#addUser fieldset input[type=radio]').attr('checked', false);
 	$('#addUser fieldset input[type=checkbox]').attr('checked', false);
-	}				
+}				
 				
 $(function() {
 
@@ -30,7 +30,7 @@ $(function() {
 // Sets the min-height of #page-wrapper to window size
 $(function() {
 
-		$(window).bind("load resize", function() {
+    $(window).bind("load resize", function() {
         topOffset = 50;
         width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
         if (width < 768) {
@@ -216,23 +216,59 @@ function findUser(event) {
 		success: function(data) { 
 		    if(data != null && typeof data[0] != 'undefined') {
 			
-			$.each(data, function(){
-			tableContent += '<tr>';
-            tableContent += '<td>' + this.userType + '</td>';
-			tableContent += '<td>' + this.lastName +', '+this.firstName+'</td>';
-			tableContent += '<td>' + this.dob + '</td>';
-			tableContent += '<td>' + this.gender + '</td>';
-			tableContent += '<td>' + this.address + '</td>';
-			tableContent += '<td>' + this.MobilePhone + '</td>';
-            tableContent += '<td>' + this.email + '</td>';		
-            tableContent += '<td>' + this.usrdet+ '</a></td>';
-            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
-            tableContent += '</tr>';
-			
-			});
+		// Stick our user data array into a userlist variable in the global object
+		var userListData = data; 
+		
+     	//foreach(h=0;h<userListData.length;h++){}
+	     var i=0; var tot = userListData.length; var j = (tot - (tot % 5)) / 5; var k =5; var num=0;
+				
+			//	table(num,k,i);
 
-        // Inject the whole content string into our existing HTML table
-			$('#userList table tbody').html(tableContent);    
+				if(tot!=0) {
+				function table(num,k,i) {
+
+					var	tableContent ="<table class='table table-striped table-hover panel-body'>";
+						tableContent +="<div id='content'>"
+			
+					while (i < k && i < tot) {
+				
+						tableContent += "<tr class='warning'>";			
+																
+						tableContent += '<td>' + userListData[i].userType + '</td>';
+						tableContent += '<td>' + userListData[i].lastName + '</td>';
+						tableContent += '<td>' + userListData[i].dob + '</td>';
+						tableContent += '<td>' + userListData[i].gender + '</td>';
+						tableContent += '<td>' + userListData[i].address + '</td>';
+						tableContent += '<td>' + userListData[i].MobilePhone + '</td>';
+						tableContent += '<td>' + userListData[i].email + '</td>';	
+						tableContent += '<td>' + userListData[i].usrdet + '</td>';							
+						tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + userListData[i].userType + '">' + userListData[i].userType + '</a></td>';
+						tableContent += '</tr>';  
+						i = i+1;
+					}
+				
+					tableContent += "</div>";
+					// Inject the whole content string into our existing HTML table
+					$('#userList table tbody').html(tableContent);
+					return;
+				}
+				   table(num,k,i); //call to function table defined above for the first time
+				
+				   // call to paginator function
+					$('#page-selection').bootpag({
+						total: (j+1)
+						//page: (j+1)
+					}).on("page", function(event, num){											
+											
+							//alert('num'+num);
+							k= 5*num ; i=(5*num)-5;
+							//alert('num:'+num+' K:'+k+' J:'+j);
+							if(i < tot) { table(num,k,i); }
+					 //$("#ListPatient table tbody").html(tableContent); 
+					});	
+				} else { 
+				   alert('No users created under this role...'); 
+				}  
 			
 		} else{
 				$('#userList table tbody').html(tableContent);
