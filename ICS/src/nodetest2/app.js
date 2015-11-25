@@ -73,6 +73,7 @@ console.log('user in session :'+req.session.user);
   }
 });
 
+/*
 app.post('/users/searchUser', requireLogin, function(req, res) {
 console.log('Hello world!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   res.redirect('/login');
@@ -86,6 +87,7 @@ function requireLogin(req, res, next) {
     next();
   }
 };
+*/
 
 app.get('/logout', function(req, res) {
   req.session.reset();
