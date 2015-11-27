@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
-
 
 /*
  * GET userlist.
@@ -124,16 +122,9 @@ router.get('/searchDoctorFeedback/:id', function(req, res) {
     var db = req.db;
     var collection = db.get('feedbacklist');
 	var feedbackToFetch = req.params.id;
-	//console.log('feedbackToFetch'+feedbackToFetch);
-	if (session!='null' && session.msg){
-		res.json({msg:'expired'});
-	} else	{
-	//console.log('session.user from Patient list' + session.user);
-	//collection.findOne({"assignedDoctor":feedbackToFetch},function(err,data) {
 	collection.find({"doctorId":feedbackToFetch},function(err,data) { console.log(data);
 		res.json(data);		
     });
-	}
 });
 
 /*

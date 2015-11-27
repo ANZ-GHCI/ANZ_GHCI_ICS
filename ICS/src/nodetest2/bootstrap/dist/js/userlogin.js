@@ -24,6 +24,7 @@ window.onload = function() {
 };
 				
 function resetPassword() {
+		event.preventDefault();
 		$('#signin').hide();
 		$('#passwordreset').show();
 };
@@ -102,6 +103,7 @@ function loginapp(event) {
 			   else if(data.userType == "Doctor") { //window.location="patientlist.html";
 						 window.location="patientlist.html?assignedDoctor="+ $('#login fieldset input#username').val();
 			   }
+					   
 			   } else {
 					// If something goes wrong, alert the error message that our service returned
 					$('#invalidlogin').show();

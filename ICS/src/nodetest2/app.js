@@ -2,9 +2,8 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('client-sessions');
+var session = require('express-session');
 
 // Database
 var mongo = require('mongodb');
@@ -15,7 +14,7 @@ var routes = require('./routes/index');
 var doctors = require('./routes/doctors');
 var patients = require('./routes/patients');
 var users = require('./routes/users');
-var login = require('./routes/login');
+var captures = require('./routes/captures');
 
 var app = express();
 
@@ -28,8 +27,13 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, 'bootstrap'))); 
+app.use(express.static(path.join(__dirname, 'node_modules')));
+
+app.set('trust proxy', 1); // trust first proxy
+
+
+//app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.use(session({
   cookieName: 'session',
@@ -38,7 +42,8 @@ app.use(session({
   activeDuration: 5 * 60 * 1000,
    httpOnly: false,
   secure: true,
-  ephemeral: true
+  resave: true,
+  saveUninitialized: true
 }));
 
 // addedto integrate boot strap  
@@ -52,48 +57,27 @@ app.use(function(req, res, next) {
 //  maintain sessions
 
 app.use(function(req, res, next) {
-console.log('session validation function called');
-console.log('user in session :'+req.session.user);
-  if (req.session && req.session.user) {
-    console.log('Session is active :))))');
-	var db = req.db;
-	var collection = db.get('userlist');
-	collection.find({ email: req.session.user.email }, function(err, user) {
-      if (user) {
-        req.user = user;
-        delete req.user.password; // delete the password from the session
-        req.session.user = user;  //refresh the session value
-        res.locals.user = user;
-      }
-      // finishing processing the middleware and run the route
-      next();
-    });
-  } else {
-    next();
-  }
+
+ console.log('%s %s', req.method, req.url);
+ if(req.url=='/users/login') {
+	next(); 
+ } else {
+	if(session.user){ 
+		next();
+	
+	} else{ 
+		session.msg='expired'; 
+		next();		
+	} 
+ } 
 });
 
-/*
-app.post('/users/searchUser', requireLogin, function(req, res) {
-console.log('Hello world!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  res.redirect('/login');
-});
-
-function requireLogin(req, res, next) {
-	console.log('require login calledddddddddddddddddddddddddddddddddddd');
-  if (!req.user) {
-    res.redirect('/login');
-  } else {
-    next();
-  }
-};
-*/
 
 app.get('/logout', function(req, res) {
   req.session.reset();
+  session.reset();
   res.redirect('/');
 });
-
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
@@ -105,7 +89,7 @@ app.use('/', routes);
 app.use('/doctors', doctors);
 app.use('/patients', patients);
 app.use('/users', users);
-app.use('/login', login);
+app.use('/captures', captures);
 
 // catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

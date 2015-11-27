@@ -90,6 +90,7 @@
                             <ul class="nav nav-second-level" id="menu1">
                                 <li>
                                     <a href="Charts.html">Charts</a>
+									<a href="topRatedDocs.html">Top Rated doctors</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -159,7 +160,7 @@
 								<fieldset>
                                         <div class="form-group">
 										    <label>User Category</label>
-                                            <select class="form-control" id="usrtype">
+                                            <select class="form-control" id="usrtype" required>
 											    <option selected="true" style="display:none;">Select Category</option>
                                                 <option value="ICS Admin"> ICS Admin</option>
                                                 <option value="ICS Staff">ICS Staff</option>
@@ -170,11 +171,11 @@
 
                                         <div class="form-group">
                                             <label>Fisrt Name </label>
-                                            <input id="firstName" type=text title="please enter First name" class="form-control" placeholder="Enter Name">
+                                            <input id="firstName" required type=text title="please enter First name" class="form-control" placeholder="Enter Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name </label>
-                                            <input id="lastName" name=lastname class="form-control" type=text placeholder="Enter Name">
+                                            <input id="lastName" required name=lastname class="form-control" type=text placeholder="Enter Name">
                                         </div>										
                                         <div class="form-group">
                                             <label>Date of Birth</label>
@@ -205,10 +206,10 @@
 										</div>
 
 										<div class="form-group">
-											<label>Mobile Phone:</label><input id="MobilePhone" type=tel class="form-control" placeholder="Mobile Phone no">
+											<label>Mobile Phone:</label><input id="MobilePhone" required type=tel class="form-control" placeholder="Mobile Phone no">
 										</div>		
 										<div class="form-group">
-											<label>E-mail:</label><input id="email" type=email class="form-control" placeholder="e-mail">
+											<label>E-mail:</label><input id="email" required type=email class="form-control" placeholder="e-mail">
 										</div>												
 										<div class="form-group">
 										<label>About User</label>
@@ -216,7 +217,7 @@
 										</div>
 										<div class="form-group">
                                             <label>SID (secret ID for password reset) *</label>
-											<input id="SID" type=text required  class="form-control">                                          
+											<input id="SID" required type=text required  class="form-control">                                          
                                         </div>
                                         <button type="submit" id="saveUser" class="btn btn-success">Submit </button>
                                         <button type="reset" id="reset" class="btn btn-danger">Reset </button>
@@ -257,7 +258,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 	
-	<script src="../../node_modules/moment/min/moment.min.js"></script>
+	<script src="../moment/min/moment.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/userRegistration.js"></script>

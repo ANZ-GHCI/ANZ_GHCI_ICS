@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
-
-
 
 /*
  * GET userlist.
@@ -24,15 +21,10 @@ router.get('/patientlistdet/:id', function(req, res) {
     var collection = db.get('patientlist');
 	var patientToFetch = req.params.id;
 	console.log('patientToFetch'+patientToFetch);
-	if (session!='null' && session.msg){
-		res.json({msg:'expired'});
-	} else	{
-	console.log('session.user from Patient list' + session.user);
-	//collection.findOne({"assignedDoctor":patientToFetch},function(err,data) {
 	collection.find({"assignedDoctor":patientToFetch},function(err,data) {
 		res.json(data);		
     });
-	}
+	
 });
 
 

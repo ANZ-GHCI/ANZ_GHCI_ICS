@@ -67,6 +67,11 @@ function findDoctorFeedback(event) {
 };
 
 function submitDoctorFeedback(event) {
+	event.preventDefault();
+	if(!$("#ratingsForm")[0].checkValidity()){
+		
+		return false;
+	}
 		// If it is, compile all user info into one object
         var newDoctorFeedback = {
 			'patient_id': $('#patientid').val(),
@@ -80,8 +85,7 @@ function submitDoctorFeedback(event) {
             url: 'http://localhost:3000/doctors/doctorsFeedback',
             dataType: 'JSON'
         }).done(function( response ) {
-            // Check for successful (blank) response
-            // Check for a successful (blank) response
+
             if (response.msg === '') {
 				$("[id=success]").attr('hidden', false);
 			}

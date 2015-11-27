@@ -19,6 +19,7 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+	<link href="../bower_components/bootstrap/dist/css/style.css" rel="stylesheet">
 	
 
     <!-- Custom Fonts -->
@@ -98,6 +99,7 @@
                             <ul class="nav nav-second-level" id="menu1">
                                 <li>
                                     <a href="Charts.html">Charts</a>
+									<a href="topRatedDocs.html">Top Rated doctors</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -166,7 +168,7 @@
 									<form id="ratingsForm">
                                         <div class="form-group">
                                             <label>Patient ID </label>
-                                            <input type=text id="patientid" class="form-control" placeholder="Enter a Patient ID">
+                                            <input type=text id="patientid" required class="form-control" placeholder="Enter a Patient ID">
                                         </div>
                                         <button id="validatepatient" class="btn btn-default">Validate Patient </button>										
 										<div class="form-group">
@@ -227,11 +229,12 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 	
-	<script src="../../node_modules/moment/min/moment.min.js"></script>
+	<script src="../moment/min/moment.min.js"></script>	
 
     <!-- DataTables JavaScript -->
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+	
 	<!-- Custom Theme JavaScript -->
     
 	<script src="../dist/js/feedback.js"></script>  

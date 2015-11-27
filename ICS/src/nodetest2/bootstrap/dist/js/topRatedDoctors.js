@@ -44,49 +44,6 @@ $(function() {
 
 });
 
-/*
-function findTopRatedDoctors() {
-	var doctorId="";
-	var doctorName="";
-	//get the list of all doctors
-	$.getJSON( 'http://localhost:3000/users/doctorslist', function( data ) { 
-		if(data != null){
-			
-			for (var i=0; i<data.length; i++) { alert(data[0].firstName);
-				doctorId = data[i].email;
-				doctorName = data[i].firstName+" "+data[i].lastName;
-				var doctor = {'doctorId' : doctorId};
-				var ratingValue =0;
-				var ratingCount =0;
-				var avgRating =0;
-				//for each doctor get the list of ratings received
-				$.ajax({
-					type: "GET",
-					url: "http://localhost:3000/doctors/searchDoctorFeedback/",
-					dataType: "json",
-					data: doctor,
-					success: function(data1) { 
-						ratingCount = data1.length;
-						$.each(data1, function(){
-							ratingValue=ratingValue+ this.rating;
-						});
-						//calculate the average rating for the doctor
-						avgRating = ratingValue/ratingCount;
-						alert('hey'); alert(doctorId + "," + avgRating);
-						//store the doctor name and his avg rating in an object
-						var doctorRating = {'doctorName' : doctorName, 'avgRating' : avgRating};
-						//add the object to array
-						feedbackListData.push(doctorRating);
-						feedbackListData.sort(compareRating);
-					}
-				});
-					//$('#listPatient table tbody').html(feedbackListData);
-			}
-			
-		}
-	});		
-}; */
-
 function findTopRatedDoctors() {
 	var doctorId="";
 	var doctorName="";
@@ -107,10 +64,8 @@ function findTopRatedDoctors() {
 				
 				$.getJSON( 'http://localhost:3000/doctors/searchDoctorFeedback/'+doctorId, function( data ) { 
 		
-					if (data.msg =='expired')
-						window.location = "login.html";
-					else
-					{ 
+					if(data != null) {
+						
 						ratingCount = data.length;
 					  if(ratingCount > 0) {
 						$.each(data, function(){
@@ -133,11 +88,9 @@ function findTopRatedDoctors() {
 						$('#listDoctor table tbody').html(tableContent);
 					  }
 					}
+					  
 				});
 			}
-			
-			//tableContent += "</div>";						
-			//$('#listDoctor table tbody').html(tableContent);
 			
 		}
 	});		
