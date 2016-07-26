@@ -48,7 +48,7 @@ $(function() {
 });
 
 function populatePartners(partner) {  
-		alert(partner);
+		
 		$.getJSON( 'http://localhost:3000/users/partnerslist', function( data ) { 
 		  if(data != null){
 					// given the id of the <select> tag as function argument, it inserts <option> tags
