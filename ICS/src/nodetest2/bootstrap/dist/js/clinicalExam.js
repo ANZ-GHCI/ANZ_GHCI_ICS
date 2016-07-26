@@ -74,7 +74,7 @@ function showClinicalExamInfo(event, patientinfo) {
 		 if(data != null) {
 			mapPatientDetails(patientinfo);
 			var thisUserObject = data;
-			
+			alert(thisUserObject.followup);
 			$('#CVSTxt').val(thisUserObject.CVSTxt);
 			$('#PulseTxt').val(thisUserObject.PulseTxt);
 			$('#BPTxt').val(thisUserObject.BPTxt);
@@ -133,6 +133,7 @@ function showClinicalExamInfo(event, patientinfo) {
 			$("[id=postFX]").val([thisUserObject.postFX]);
 			
 			$("[name=clinDiagnosis]").val([thisUserObject.clinDiagnosis]);
+			$("[id=followup]").val([thisUserObject.followup]);
 				
 		} else{
 			mapPatientDetails(patientinfo);
@@ -310,9 +311,11 @@ function prepareClinicalExamJson(){
 			'cdBeginningTxt': $('#addClinicalExam fieldset input#cdBeginningTxt').val(),
 			'cdPreCancerTxt': $('#addClinicalExam fieldset input#cdPreCancerTxt').val(),
 			'cdSuspiciousTxt': $('#addClinicalExam fieldset input#cdSuspiciousTxt').val(),
-			'cdDetectedTxt': $('#addClinicalExam fieldset input#cdDetectedTxt').val()
+			'cdDetectedTxt': $('#addClinicalExam fieldset input#cdDetectedTxt').val(),
+			
+			'followup': $('[id=followup]:checked').val()
         }
-		
+		alert($('[id=followup]:checked').val()+''+clinicalExam.followup);
 		return clinicalExam;
 
 	};		
