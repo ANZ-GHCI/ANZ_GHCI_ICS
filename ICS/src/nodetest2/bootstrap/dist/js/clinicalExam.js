@@ -74,7 +74,7 @@ function showClinicalExamInfo(event, patientinfo) {
 		 if(data != null) {
 			mapPatientDetails(patientinfo);
 			var thisUserObject = data;
-			alert(thisUserObject.followup);
+
 			$('#CVSTxt').val(thisUserObject.CVSTxt);
 			$('#PulseTxt').val(thisUserObject.PulseTxt);
 			$('#BPTxt').val(thisUserObject.BPTxt);
@@ -315,7 +315,7 @@ function prepareClinicalExamJson(){
 			
 			'followup': $('[id=followup]:checked').val()
         }
-		alert($('[id=followup]:checked').val()+''+clinicalExam.followup);
+
 		return clinicalExam;
 
 	};		
