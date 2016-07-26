@@ -10,6 +10,7 @@ $(function() {
 		// block free time on link click
    	 $('#saveAppointment').on('click', saveAppointment); //Submit the form
 //		 $('#listPatient table tbody').on('click', 'td a.linkClinicalInfo', fetchPatientdet);	
+	$('#searchPatients').on('click', searchPatients); 	
 	});
 });	
 
@@ -88,6 +89,98 @@ function populatePatientTable() {
 	}
 	});
 }; 
+
+
+function searchPatients() { 
+	var param1='';
+	var method='';
+	
+	var campid=$('#campId').val();
+	var fromdate=$('#from_date').val();
+	var todate=$('#to_date').val();
+	if($.trim(campid)==''  && (fromdate=='' && todate=='') ){
+	  alert("Please enter search criteria");
+	}else if($.trim(campid)==''  && (fromdate=='' || todate=='') ){
+		alert("enter both the dates");
+	}else if((fromdate=='' && todate!='') || (fromdate!='' && todate=='')){
+		alert("Please enter both the dates");
+	}else if($.trim(campid)!=''  && (fromdate!='' && todate!='') ){
+	  alert("Please enter only one criteria");
+	}
+
+	if($.trim(campid)!=''){
+	 param1=$.trim(campid);
+	 method="patientlistbycamp";
+	}else{
+	 param1=fromdate+"*"+todate;
+	 method="patientlistbyDate";	 
+	}
+	alert(param1+":"+param2+":"+param3);
+
+    // jQuery AJAX call for JSON
+	$.getJSON( 'http://localhost:3000/patients/'+method'/'+param1, function( data ) { 
+	
+	if (data.msg =='expired')
+		window.location = "login.html";
+	else
+	{
+		// Stick our user data array into a userlist variable in the global object
+		var patientListData = data; 
+		
+     	//foreach(h=0;h<patientListData.length;h++){}
+	     var i=0; var tot = patientListData.length; var j = (tot - (tot % 5)) / 5; var k =5; var num=0;
+				
+			//	table(num,k,i);
+
+				if(tot!=0) {
+				function table(num,k,i) {
+
+					var	tableContent ="<table class='table table-striped table-hover panel-body'>";
+						tableContent +="<div id='content'>"
+			
+					while (i < k && i < tot) {
+				
+						tableContent += "<tr class='warning'>";			
+																
+						tableContent += '<td><a href="#" id="fetchPatient" class="linkClinicalInfo" rel="' + patientListData[i].patient_id + '">' + patientListData[i].patient_id + '</a></td>';											
+						tableContent += '<td>' + patientListData[i].firstName + '</td>';
+						tableContent += '<td>' + patientListData[i].lastName + '</td>';
+						tableContent += '<td>' + patientListData[i].dob + '</td>';
+						tableContent += '<td>' + patientListData[i].gender + '</td>';
+						tableContent += '<td>' + patientListData[i].address + '</td>';
+						tableContent += '<td>' + patientListData[i].MobilePhone + '</td>';
+						tableContent += '<td>' + patientListData[i].email + '</td>';		
+						tableContent += '<td><a href="#" id="fetchPatient" class="linkClinicalInfo" rel="' + patientListData[i].patient_id + '">' + patientListData[i].patient_id + '</a></td>';
+						tableContent += '</tr>';  
+						i = i+1;
+					}
+				
+					tableContent += "</div>";
+					// Inject the whole content string into our existing HTML table
+					$('#listPatient table tbody').html(tableContent);
+					return;
+				}
+				   table(num,k,i); //call to function table defined above for the first time
+				
+				   // call to paginator function
+					$('#page-selection').bootpag({
+						total: (j+1)
+						//page: (j+1)
+					}).on("page", function(event, num){											
+											
+							//alert('num'+num);
+							k= 5*num ; i=(5*num)-5;
+							//alert('num:'+num+' K:'+k+' J:'+j);
+							if(i < tot) { table(num,k,i); }
+					 //$("#ListPatient table tbody").html(tableContent); 
+					});	
+				} else { 
+				   //alert('No patients assigned ...'); 
+				}
+	}
+	});
+}; 
+
 
 
 // fetchPatient details
@@ -299,7 +392,7 @@ event.preventDefault();
 		details.createdDate = todaysDate.format('D/M/YYYY');
 	$.ajax({
             type: 'POST',
-            url: 'http://104.197.53.84:3000/doctors/blockAppointment',
+            url: 'http://localhost:3000/doctors/blockAppointment',
 			data: details
         }).done(function( response ) {
 			

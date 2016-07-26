@@ -27,6 +27,34 @@ router.get('/patientlistdet/:id', function(req, res) {
 	
 });
 
+/*
+* get patient list by camp id
+*/
+router.get('/patientlistbycamp/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('patientlist');
+	var patientToFetch = req.params.id;
+	console.log('patientToFetch'+patientToFetch);
+	collection.findOne({"patient_id":patientToFetch},function(err,data) {
+		res.json(data);		
+    });
+	
+});
+
+/*
+* get patient list by date range 
+*/
+router.get('/patientlistbyDate/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('patientlist');
+	var patientToFetch = req.params.id;
+	console.log('patientToFetch'+patientToFetch);
+	collection.findOne({"patient_id":patientToFetch},function(err,data) {
+		res.json(data);		
+    });
+	
+});
+
 
 /*
 * search patient

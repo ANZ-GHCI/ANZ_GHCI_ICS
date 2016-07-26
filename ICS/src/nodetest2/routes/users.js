@@ -143,4 +143,42 @@ router.get('/doctorslist', function(req, res) {
     }); 
 });
 
+/*
+ * GET doctors userlist.
+ */
+router.get('/partnerslist', function(req, res) {
+	console.log('retrieve Partners list');
+    var db = req.db;
+    var collection = db.get('userlist');
+    collection.find({"userType":"Partner"},{"firstName":1, "lastName":2,"email":0},function(e,docs){
+        res.json(docs);
+    }); 
+});
+
+/*
+ * POST to addcamp.
+ */
+router.post('/createCamp', function(req, res) {
+    var db = req.db;
+	var collection = db.get('campslist');
+	collection.insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+    });
+	
+
+});
+
+/*
+ * GET userlist.
+ */
+router.get('/campslist', function(req, res) {
+     var db = req.db;
+    var collection = db.get('campslist');
+    collection.find({},{},function(e,docs){
+        res.json(docs);
+    });
+});
+
 module.exports = router;

@@ -152,7 +152,7 @@ function savePatient(event) {
     
 	// Super basic validation - increase errorCount variable if any fields are blank
 	if(!$("#patientRegistrationForm")[0].checkValidity()){
-		
+		alert("Please enter all mandatory fields");
 		return false;
 	}
 	event.preventDefault();
