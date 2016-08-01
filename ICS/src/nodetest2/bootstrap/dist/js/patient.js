@@ -133,9 +133,14 @@ function findPatient(event) {
 			$("[id=cancer]").val([thisUserObject.cancer]);
 			$("[id=others]").val([thisUserObject.others]);
 		    
-			 $('#firstName').attr("disabled", true);
-			 $('#lastName').attr("disabled", true);
-			 $('#dob').attr("disabled", true);
+			$('#firstName').attr("disabled", true);
+			$('#lastName').attr("disabled", true);
+			$('#dob').attr("disabled", true);
+			$('#patientid_new').attr("disabled", true);
+			 
+			$('#patientid_new').val(thisUserObject.patientid_new);
+			$('#slide_no').val(thisUserObject.slide_no);
+			$('#comments').attr("disabled", true);
 			
 		} else{
 		
@@ -151,16 +156,15 @@ function findPatient(event) {
 function savePatient(event) {
     
 	// Super basic validation - increase errorCount variable if any fields are blank
-	if(!$("#patientRegistrationForm")[0].checkValidity()){
-		alert("Please enter all mandatory fields");
+	if(!$("#patientRegistrationForm")[0].checkValidity()){		
 		return false;
 	}
 	event.preventDefault();
 	// Check and make sure errorCount's still at zero
             // If it is, compile all user info into one object
         var newPatient = preparePatientJson();
-		var datestring = newPatient.dob.substring(8, 10)+newPatient.dob.substring(5, 7)+newPatient.dob.substring(0, 4);
-		newPatient.patient_id = newPatient.firstName.substring(0, 4)+newPatient.lastName.substring(0,1)+datestring;
+		//var datestring = newPatient.dob.substring(8, 10)+newPatient.dob.substring(5, 7)+newPatient.dob.substring(0, 4);
+		//newPatient.patient_id = newPatient.firstName.substring(0, 4)+newPatient.lastName.substring(0,1)+datestring;
 		var todaysDate = moment(new Date());
 		newPatient.createdDate = todaysDate.format('D/M/YYYY');
         // Use AJAX to post the object to our adduser service
@@ -195,8 +199,8 @@ function updatePatient(event) {
 		return false;
 	}
     var patientDetails = preparePatientJson();	  
-	var datestring = patientDetails.dob.substring(8, 10)+patientDetails.dob.substring(5, 7)+patientDetails.dob.substring(0, 4);
-	patientDetails.patient_id = patientDetails.firstName.substring(0, 4)+patientDetails.lastName.substring(0,1)+datestring;	
+	//var datestring = patientDetails.dob.substring(8, 10)+patientDetails.dob.substring(5, 7)+patientDetails.dob.substring(0, 4);
+	//patientDetails.patient_id = patientDetails.firstName.substring(0, 4)+patientDetails.lastName.substring(0,1)+datestring;	
 	var todaysDate = moment(new Date());
 	patientDetails.updatedDate = todaysDate.format('D/M/YYYY');
 		
@@ -248,7 +252,11 @@ function preparePatientJson(){
 			'tb': $('#addPatient fieldset input[id=tb]:checked').val(),
 			'heart_disease': $('#addPatient fieldset input[id=heart_disease]:checked').val(),
 			'cancer': $('#addPatient fieldset input[id=cancer]:checked').val(),
-			'others': $('#addPatient fieldset input[id=others]:checked').val()
+			'others': $('#addPatient fieldset input[id=others]:checked').val(),
+			
+			'patient_id': $('#addPatient fieldset input#patientid_new').val(),
+			'slide_no': $('#addPatient fieldset input#slide_no').val(),
+			'comments': $('#addPatient fieldset input#comments').val()
         };
 		
 		return patient;
