@@ -154,10 +154,10 @@ function mapPatientDetails(patientinfo) {
 		
 		$("[name=smoke]").val([patientinfo.smoke]);
 		 $("[name=gender]").val([patientinfo.gender]);
-		$("[name=chewing]").val([patientinfo.smoke]);
-		$("[name=snuffing]").val([patientinfo.smoke]);
-		$("[name=alcohol]").val([patientinfo.smoke]);
-		$("[name=food]").val([patientinfo.smoke]);
+		$("[name=chewing]").val([patientinfo.chewing]);
+		$("[name=snuffing]").val([patientinfo.snuffing]);
+		$("[name=alcohol]").val([patientinfo.alcohol]);
+		$("[name=food]").val([patientinfo.food]);
 	
 		$("[id=diabetes]").val([patientinfo.diabetes]);
 		$("[id=bp]").val([patientinfo.bp]);
